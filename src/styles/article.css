@@ -1,0 +1,68 @@
+.article-page {
+  margin-top: 1rem;
+}
+
+.article-header,
+.conclusion-block,
+.interactive-block,
+.article-page .content-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-top: 1rem;
+}
+
+.article-description {
+  color: var(--muted);
+}
+
+.article-content table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.article-content th,
+.article-content td {
+  border: 1px solid var(--line);
+  padding: 0.4rem;
+}
+
+.interactive-root {
+  margin-top: 0.6rem;
+}
+
+.viz-canvas {
+  width: 100%;
+  min-height: 260px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.slider-controls {
+  margin-top: 0.8rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.slider-row {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.slider-input {
+  width: 100%;
+  min-height: var(--tap-min);
+}
+
+.slider-value {
+  font-weight: 700;
+  color: var(--brand-strong);
+}
+
+.interactive-summary {
+  margin: 0.7rem 0 0;
+  font-weight: 600;
+  color: #1e3a8a;
+}

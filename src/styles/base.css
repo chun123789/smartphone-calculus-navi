@@ -1,0 +1,126 @@
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #475569;
+  --line: #cbd5e1;
+  --brand: #0ea5e9;
+  --brand-strong: #0369a1;
+  --accent: #f59e0b;
+  --focus: #ef4444;
+  --radius: 14px;
+  --tap-min: 44px;
+  --content-max: 760px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  font-family: "BIZ UDPGothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  line-height: 1.75;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+a {
+  color: var(--brand-strong);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.main-content {
+  width: min(100% - 1.2rem, var(--content-max));
+  margin: 0 auto;
+  padding: 0.8rem 0 4rem;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.6rem;
+  top: -100px;
+  background: var(--ink);
+  color: #fff;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  z-index: 200;
+}
+
+.skip-link:focus {
+  top: 0.8rem;
+}
+
+.hero-card,
+.content-section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem;
+  margin-top: 1rem;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+}
+
+.button-primary,
+.button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap-min);
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.button-primary {
+  color: #fff;
+  background: linear-gradient(120deg, var(--brand), var(--brand-strong));
+}
+
+.button-secondary {
+  color: var(--brand-strong);
+  background: #e0f2fe;
+}
+
+.plain-list {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.small-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 17px;
+  }
+}

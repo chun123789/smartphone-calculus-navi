@@ -1,0 +1,38 @@
+<article class="article-page">
+  <header class="article-header">
+    <h1>{{article_title}}</h1>
+    <p class="article-description">{{article_description}}</p>
+    <ul class="tag-list">{{article_tags}}</ul>
+  </header>
+
+  <section class="conclusion-block">
+    <h2>結論</h2>
+    <p>{{conclusion_text}}</p>
+  </section>
+
+  {{interactive_html}}
+  {{ad_top}}
+
+  <section class="content-section">
+    <h2>解説</h2>
+    <div class="article-content">{{article_body}}</div>
+  </section>
+
+  <section class="content-section">
+    <h2>例題</h2>
+    <p>{{example_text}}</p>
+  </section>
+
+  <section class="content-section">
+    <h2>よくあるミス</h2>
+    <p>{{common_mistake_text}}</p>
+  </section>
+
+  {{related_links_html}}
+  {{ad_bottom}}
+
+  <section class="content-section">
+    <h2>更新ログ</h2>
+    <ul class="plain-list">{{update_items}}</ul>
+  </section>
+</article>
