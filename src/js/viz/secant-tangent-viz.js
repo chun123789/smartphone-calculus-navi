@@ -14,7 +14,7 @@ export function initSecantTangentViz({ root, readValues }) {
     const data = d3.range(xMin, xMax + 0.01, 0.05).map((x) => ({ x, y: f(x) }));
     const yExtent = d3.extent(data, (d) => d.y);
     const yPad = Math.max(1, (yExtent[1] - yExtent[0]) * 0.2);
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [xMin, xMax],
       yDomain: [yExtent[0] - yPad, yExtent[1] + yPad]
     });
@@ -28,7 +28,7 @@ export function initSecantTangentViz({ root, readValues }) {
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#0f172a")
+      .attr("stroke", palette.curve)
       .attr("stroke-width", 2.2)
       .attr("d", curve);
 
@@ -46,7 +46,7 @@ export function initSecantTangentViz({ root, readValues }) {
       .attr("x2", xScale(xMax))
       .attr("y1", yScale(secantY(xMin)))
       .attr("y2", yScale(secantY(xMax)))
-      .attr("stroke", "#ef4444")
+      .attr("stroke", palette.danger)
       .attr("stroke-width", 2);
 
     plot
@@ -55,7 +55,7 @@ export function initSecantTangentViz({ root, readValues }) {
       .attr("x2", xScale(xMax))
       .attr("y1", yScale(tangentY(xMin)))
       .attr("y2", yScale(tangentY(xMax)))
-      .attr("stroke", "#0ea5e9")
+      .attr("stroke", palette.primary)
       .attr("stroke-width", 2)
       .attr("stroke-dasharray", "5,4");
 
@@ -64,14 +64,14 @@ export function initSecantTangentViz({ root, readValues }) {
       .attr("cx", xScale(pointA.x))
       .attr("cy", yScale(pointA.y))
       .attr("r", 4.2)
-      .attr("fill", "#0ea5e9");
+      .attr("fill", palette.primary);
 
     plot
       .append("circle")
       .attr("cx", xScale(pointB.x))
       .attr("cy", yScale(pointB.y))
       .attr("r", 4.2)
-      .attr("fill", "#ef4444");
+      .attr("fill", palette.danger);
 
     summary.textContent =
       `割線の傾き: ${secantSlope.toFixed(4)} / 接線の傾き: ${tangentSlope.toFixed(4)}。` +
@@ -83,4 +83,3 @@ export function initSecantTangentViz({ root, readValues }) {
   });
   render();
 }
-

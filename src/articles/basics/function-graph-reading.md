@@ -1,7 +1,7 @@
 ---
 slug: function-graph-reading
 title: グラフ読解の基礎（増減と傾き）
-description: グラフ読解の基礎（増減と傾き）を高校生向けにスマホで理解する。
+description: グラフ読解の基礎（増減と傾き）で変化の見方をそろえ、グラフと式の対応を言葉で説明できるようにする。
 section: basics
 order: 5
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 6
 examTag: 定期テスト対策
 misconceptionPattern: グラフ読解の基礎（増減と傾き） を公式暗記だけで処理してしまう
 cta: 次の基礎記事へ進む
+hookQuestion: グラフ読解の基礎（増減と傾き）で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 変化の向きを先に見て、グラフ読解の基礎（増減と傾き）の意味を式とグラフで一致させる。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - グラフ読解の基礎（増減と傾き）の要点を30秒で口頭説明できるか。
+  - グラフ読解の基礎（増減と傾き）の同型問題で同じ手順を再現できるか。
 tags:
   - 微積の準備
   - 定期テスト

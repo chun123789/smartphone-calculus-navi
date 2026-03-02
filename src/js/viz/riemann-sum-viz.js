@@ -19,7 +19,7 @@ export function initRiemannSumViz({ root, readValues }) {
     const data = d3.range(a, b + 0.01, 0.02).map((x) => ({ x, y: f(k, x) }));
     const yMax = Math.max(...data.map((d) => d.y), 1);
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [a, b],
       yDomain: [0, yMax * 1.15]
     });
@@ -33,7 +33,7 @@ export function initRiemannSumViz({ root, readValues }) {
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#0f172a")
+      .attr("stroke", palette.curve)
       .attr("stroke-width", 2.2)
       .attr("d", curve);
 
@@ -46,8 +46,8 @@ export function initRiemannSumViz({ root, readValues }) {
         .attr("y", yScale(y))
         .attr("width", Math.max(0, xScale(x + dx) - xScale(x) - 1))
         .attr("height", yScale(0) - yScale(y))
-        .attr("fill", "rgba(14,165,233,0.25)")
-        .attr("stroke", "rgba(14,165,233,0.6)");
+        .attr("fill", palette.fillPrimary)
+        .attr("stroke", palette.primary);
     }
 
     const approx = computeRiemannSum({ k, n, method: "left", a, b });
@@ -62,4 +62,3 @@ export function initRiemannSumViz({ root, readValues }) {
   });
   render();
 }
-

@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2026-03-02T06:49:57.495Z",
+  "articleCount": 30,
+  "description": {
+    "minLength": 40,
+    "maxLength": 56,
+    "avgLength": 50.03,
+    "duplicateRate": 0,
+    "repeatedEndings": [
+      {
+        "ending": "現できるようにする。",
+        "count": 8
+      },
+      {
+        "ending": "を選べるようにする。",
+        "count": 5
+      },
+      {
+        "ending": "正できるようにする。",
+        "count": 5
+      },
+      {
+        "ending": "で言えるようにする。",
+        "count": 3
+      },
+      {
+        "ending": "断できるようにする。",
+        "count": 3
+      },
+      {
+        "ending": "てられるようにする。",
+        "count": 3
+      },
+      {
+        "ending": "い出せるようにする。",
+        "count": 2
+      }
+    ]
+  },
+  "bodyLength": {
+    "min": 161,
+    "max": 287,
+    "avg": 239.5
+  },
+  "errors": []
+}

@@ -1,7 +1,7 @@
 ---
 slug: substitution-integral-intuition
 title: 置換積分の直感（変数変換）
-description: 置換積分の直感（変数変換）を高校生向けにスマホで理解する。
+description: 置換積分の直感（変数変換）を共通テスト形式で読み解き、設問に沿って必要な式を組み立てられるようにする。
 section: integration
 order: 44
 track: exam
@@ -12,6 +12,15 @@ estimatedMinutes: 10
 examTag: 共通テスト対策
 misconceptionPattern: 誘導文の条件を式に変換する前に計算を始めてしまう
 cta: 共通テスト演習へ進む
+hookQuestion: 置換積分の直感（変数変換）で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 誘導文の条件から必要量を選び、置換積分の直感（変数変換）を共テ形式で判断できるようにする。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 誘導文のゴールを先に確認し、必要式だけを選ぶ
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 置換積分の直感（変数変換）の要点を30秒で口頭説明できるか。
+  - 置換積分の直感（変数変換）の同型問題で同じ手順を再現できるか。
 tags:
   - 積分
   - 共通テスト

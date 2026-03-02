@@ -1,7 +1,7 @@
 ---
 slug: common-calculus-mistakes
 title: 微積でよくあるミス集（高校生向け）
-description: 微積でよくあるミス集（高校生向け）を高校生向けにスマホで理解する。
+description: 微積でよくあるミス集（高校生向け）の誤答パターンを反例で確認し、失点ポイントを自力で修正できるようにする。
 section: mistakes
 order: 64
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 6
 examTag: 定期テスト対策
 misconceptionPattern: 記号だけ追って意味を確認しないまま計算を進めてしまう
 cta: 次の基礎記事へ進む
+hookQuestion: 微積でよくあるミス集（高校生向け）で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 誤答パターンを先に潰し、微積でよくあるミス集（高校生向け）で失点しない確認手順を身につける。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 微積でよくあるミス集（高校生向け）の要点を30秒で口頭説明できるか。
+  - 微積でよくあるミス集（高校生向け）の同型問題で同じ手順を再現できるか。
 tags:
   - ミス集
   - 定期テスト

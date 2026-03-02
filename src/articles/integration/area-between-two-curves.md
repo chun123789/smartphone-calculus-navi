@@ -1,7 +1,7 @@
 ---
 slug: area-between-two-curves
 title: 2曲線で囲まれた面積（上-下）
-description: 2曲線で囲まれた面積（上-下）を高校生向けにスマホで理解する。
+description: 2曲線で囲まれた面積（上-下）を共通テスト形式で読み解き、誘導文のゴールから解答方針を選べるようにする。
 section: integration
 order: 40
 track: exam
@@ -12,6 +12,15 @@ estimatedMinutes: 8
 examTag: 共通テスト対策
 misconceptionPattern: 誘導文の条件を式に変換する前に計算を始めてしまう
 cta: 共通テスト演習へ進む
+hookQuestion: 2曲線で囲まれた面積（上-下）で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 誘導文の条件から必要量を選び、2曲線で囲まれた面積（上-下）を共テ形式で判断できるようにする。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 誘導文のゴールを先に確認し、必要式だけを選ぶ
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 2曲線で囲まれた面積（上-下）の要点を30秒で口頭説明できるか。
+  - 2曲線で囲まれた面積（上-下）の同型問題で同じ手順を再現できるか。
 tags:
   - 積分
   - 共通テスト

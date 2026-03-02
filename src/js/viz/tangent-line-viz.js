@@ -15,7 +15,7 @@ export function initTangentLineViz({ root, readValues }) {
     const yExtent = d3.extent(data, (d) => d.y);
     const yPad = Math.max(1, (yExtent[1] - yExtent[0]) * 0.2);
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [xMin, xMax],
       yDomain: [yExtent[0] - yPad, yExtent[1] + yPad]
     });
@@ -29,7 +29,7 @@ export function initTangentLineViz({ root, readValues }) {
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#0f172a")
+      .attr("stroke", palette.curve)
       .attr("stroke-width", 2.2)
       .attr("d", curve);
 
@@ -43,7 +43,7 @@ export function initTangentLineViz({ root, readValues }) {
       .attr("x2", xScale(xMax))
       .attr("y1", yScale(tangentY(xMin)))
       .attr("y2", yScale(tangentY(xMax)))
-      .attr("stroke", "#0b74de")
+      .attr("stroke", palette.primary)
       .attr("stroke-width", 2.1);
 
     plot
@@ -51,7 +51,7 @@ export function initTangentLineViz({ root, readValues }) {
       .attr("cx", xScale(point.x))
       .attr("cy", yScale(point.y))
       .attr("r", 4.4)
-      .attr("fill", "#e27a00");
+      .attr("fill", palette.secondary);
 
     summary.textContent = `接線の傾き f'(a) = ${slope.toFixed(4)}。点aを動かすと傾きが更新されます。`;
   };

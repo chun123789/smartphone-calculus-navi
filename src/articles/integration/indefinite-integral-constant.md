@@ -1,7 +1,7 @@
 ---
 slug: indefinite-integral-constant
 title: 積分定数Cの意味と使いどころ
-description: 積分定数Cの意味と使いどころを高校生向けにスマホで理解する。
+description: 積分定数Cの意味と使いどころの誤答パターンを反例で確認し、失点ポイントを自力で修正できるようにする。
 section: integration
 order: 34
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 8
 examTag: 定期テスト対策
 misconceptionPattern: 記号だけ追って意味を確認しないまま計算を進めてしまう
 cta: 次の基礎記事へ進む
+hookQuestion: 積分定数Cの意味と使いどころで、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 誤答パターンを先に潰し、積分定数Cの意味と使いどころで失点しない確認手順を身につける。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 積分定数Cの意味と使いどころの要点を30秒で口頭説明できるか。
+  - 積分定数Cの意味と使いどころの同型問題で同じ手順を再現できるか。
 tags:
   - 積分
   - 定期テスト

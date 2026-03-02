@@ -1,37 +1,63 @@
 :root {
   --radius: 14px;
   --tap-min: 44px;
+  --tap-main: 48px;
   --content-max: 760px;
-  --font-main: "BIZ UDPGothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-body: "BIZ UDPGothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  --font-heading: "M PLUS Rounded 1c", "BIZ UDPGothic", "Hiragino Sans", sans-serif;
 }
 
 :root[data-theme="light"] {
-  --bg: #f3f7fb;
-  --surface: #ffffff;
-  --surface-soft: #eef4ff;
-  --ink: #0b1020;
-  --ink-soft: #3f4b63;
-  --line: #cad5ea;
-  --brand: #0b74de;
-  --brand-strong: #0758a7;
-  --accent: #e27a00;
+  --bg: #f6f4ef;
+  --surface: #fffcf5;
+  --surface-soft: #f2eee3;
+  --ink: #102033;
+  --ink-soft: #40526b;
+  --line: #d5d0c1;
+  --brand: #0f6dcb;
+  --brand-strong: #0a4e91;
+  --accent: #d97706;
   --focus: #e11d48;
-  --ok: #0e9f6e;
+  --ok: #0f766e;
+
+  --viz-curve: #1e293b;
+  --viz-primary: #0f6dcb;
+  --viz-secondary: #d97706;
+  --viz-danger: #dc2626;
+  --viz-accent: #0f766e;
+  --viz-point: #1d4ed8;
+  --viz-fill-primary: rgba(15, 109, 203, 0.2);
+  --viz-fill-secondary: rgba(15, 118, 110, 0.22);
+  --viz-danger-soft: rgba(220, 38, 38, 0.2);
+  --viz-axis-line: #bfc7d2;
+  --viz-axis-text: #40526b;
   color-scheme: light;
 }
 
 :root[data-theme="dark"] {
-  --bg: #070b14;
-  --surface: #111a2c;
-  --surface-soft: #132038;
-  --ink: #edf2ff;
-  --ink-soft: #b8c4dd;
-  --line: #2b3a58;
-  --brand: #5eb6ff;
-  --brand-strong: #8ecbff;
-  --accent: #ffbf47;
-  --focus: #fb7185;
-  --ok: #2ed79f;
+  --bg: #11141d;
+  --surface: #1a2230;
+  --surface-soft: #232d3f;
+  --ink: #edf3ff;
+  --ink-soft: #bcc9df;
+  --line: #35435b;
+  --brand: #69b6ff;
+  --brand-strong: #a0d2ff;
+  --accent: #ffb454;
+  --focus: #f472b6;
+  --ok: #44d3c7;
+
+  --viz-curve: #e2e8f0;
+  --viz-primary: #69b6ff;
+  --viz-secondary: #ffb454;
+  --viz-danger: #ff7b7b;
+  --viz-accent: #44d3c7;
+  --viz-point: #93c5fd;
+  --viz-fill-primary: rgba(105, 182, 255, 0.26);
+  --viz-fill-secondary: rgba(68, 211, 199, 0.26);
+  --viz-danger-soft: rgba(255, 123, 123, 0.26);
+  --viz-axis-line: #55647d;
+  --viz-axis-text: #bcc9df;
   color-scheme: dark;
 }
 
@@ -47,12 +73,20 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    radial-gradient(circle at 10% -10%, rgba(94, 182, 255, 0.22), transparent 35%),
-    radial-gradient(circle at 90% 0%, rgba(255, 191, 71, 0.16), transparent 28%),
+    radial-gradient(circle at 2% 0%, color-mix(in srgb, var(--brand) 18%, transparent), transparent 36%),
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 32%),
     var(--bg);
-  font-family: var(--font-main);
+  font-family: var(--font-body);
   line-height: 1.72;
   min-height: 100dvh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.35;
+  letter-spacing: 0.01em;
 }
 
 img,
@@ -66,9 +100,19 @@ a {
 
 a:focus-visible,
 button:focus-visible,
+summary:focus-visible,
 input:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 2px;
+}
+
+main,
+section,
+article,
+header,
+footer,
+nav {
+  scroll-margin-top: 88px;
 }
 
 .main-content {
@@ -99,12 +143,11 @@ input:focus-visible {
   border-radius: var(--radius);
   padding: 1rem;
   margin-top: 1rem;
-  box-shadow: 0 9px 26px rgba(5, 10, 18, 0.15);
 }
 
 .hero-layered {
   background:
-    linear-gradient(150deg, rgba(11, 116, 222, 0.2), rgba(11, 116, 222, 0) 40%),
+    linear-gradient(150deg, color-mix(in srgb, var(--brand) 18%, transparent), transparent 40%),
     var(--surface);
 }
 
@@ -121,9 +164,9 @@ input:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: var(--tap-min);
+  min-height: var(--tap-main);
   padding: 0.64rem 1.05rem;
-  border-radius: 10px;
+  border-radius: 11px;
   text-decoration: none;
   font-weight: 700;
   border: 1px solid transparent;
@@ -155,6 +198,7 @@ input:focus-visible {
     opacity: 0;
     transform: translateY(5px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

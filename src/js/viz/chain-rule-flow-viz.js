@@ -25,7 +25,7 @@ export function initChainRuleFlowViz({ root, readValues }) {
     const yExtent = d3.extent(data, (d) => d.y);
     const yPad = Math.max(0.5, (yExtent[1] - yExtent[0]) * 0.15);
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [xMin, xMax],
       yDomain: [yExtent[0] - yPad, yExtent[1] + yPad]
     });
@@ -39,7 +39,7 @@ export function initChainRuleFlowViz({ root, readValues }) {
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#0f172a")
+      .attr("stroke", palette.curve)
       .attr("stroke-width", 2.2)
       .attr("d", line);
 
@@ -54,7 +54,7 @@ export function initChainRuleFlowViz({ root, readValues }) {
       .attr("cx", xScale(x))
       .attr("cy", yScale(y))
       .attr("r", 4.2)
-      .attr("fill", "#0b74de");
+      .attr("fill", palette.primary);
 
     summary.textContent = `u=${uValue.toFixed(3)}, dy/du=${dydu.toFixed(3)}, du/dx=${dudx.toFixed(3)} なので dy/dx=${dydx.toFixed(3)}。`;
   };

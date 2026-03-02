@@ -1,7 +1,7 @@
 ---
 slug: signed-area-vs-absolute
 title: 符号付き面積と絶対値面積の違い
-description: 符号付き面積と絶対値面積の違いを高校生向けにスマホで理解する。
+description: 符号付き面積と絶対値面積の違いの誤答パターンを反例で確認し、失点ポイントを自力で修正できるようにする。
 section: integration
 order: 38
 track: exam
@@ -12,6 +12,15 @@ estimatedMinutes: 8
 examTag: 共通テスト対策
 misconceptionPattern: 記号だけ追って意味を確認しないまま計算を進めてしまう
 cta: 共通テスト演習へ進む
+hookQuestion: 符号付き面積と絶対値面積の違いで、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 誤答パターンを先に潰し、符号付き面積と絶対値面積の違いで失点しない確認手順を身につける。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 誘導文のゴールを先に確認し、必要式だけを選ぶ
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 符号付き面積と絶対値面積の違いの要点を30秒で口頭説明できるか。
+  - 符号付き面積と絶対値面積の違いの同型問題で同じ手順を再現できるか。
 tags:
   - 積分
   - 共通テスト

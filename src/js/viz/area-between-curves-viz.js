@@ -22,7 +22,7 @@ export function initAreaBetweenCurvesViz({ root, readValues }) {
     const yMin = Math.min(...samples.map((d) => Math.min(d.top, d.bottom))) - 0.5;
     const yMax = Math.max(...samples.map((d) => Math.max(d.top, d.bottom))) + 0.5;
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [xMin, xMax],
       yDomain: [yMin, yMax]
     });
@@ -34,7 +34,7 @@ export function initAreaBetweenCurvesViz({ root, readValues }) {
       .append("path")
       .datum(samples)
       .attr("fill", "none")
-      .attr("stroke", "#0b74de")
+      .attr("stroke", palette.primary)
       .attr("stroke-width", 2)
       .attr("d", line1);
 
@@ -42,7 +42,7 @@ export function initAreaBetweenCurvesViz({ root, readValues }) {
       .append("path")
       .datum(samples)
       .attr("fill", "none")
-      .attr("stroke", "#e27a00")
+      .attr("stroke", palette.secondary)
       .attr("stroke-width", 2)
       .attr("d", line2);
 
@@ -56,7 +56,7 @@ export function initAreaBetweenCurvesViz({ root, readValues }) {
       .append("path")
       .datum(samples)
       .attr("d", area)
-      .attr("fill", "rgba(46,215,159,0.22)");
+      .attr("fill", palette.fillSecondary);
 
     const areaApprox = samples.reduce((acc, point, index) => {
       if (index === 0) return acc;

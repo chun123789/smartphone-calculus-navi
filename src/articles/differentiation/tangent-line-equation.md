@@ -1,7 +1,7 @@
 ---
 slug: tangent-line-equation
 title: 接線の方程式の求め方
-description: 接線の方程式の求め方を高校生向けにスマホで理解する。
+description: 接線の方程式の求め方で迷う分岐を整理し、問題を見たら手順を再現できるようにする。
 section: differentiation
 order: 12
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 6
 examTag: 定期テスト対策
 misconceptionPattern: 接線の方程式の求め方 を公式暗記だけで処理してしまう
 cta: 次の基礎記事へ進む
+hookQuestion: 接線の方程式の求め方で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 接線の方程式の求め方の手順を固定し、条件を見たら次の一手を再現できる状態を作る。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 接線の方程式の求め方の要点を30秒で口頭説明できるか。
+  - 接線の方程式の求め方の同型問題で同じ手順を再現できるか。
 tags:
   - 微分
   - 定期テスト

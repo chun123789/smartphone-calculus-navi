@@ -1,7 +1,7 @@
 ---
 slug: secant-to-tangent
 title: 割線→接線（微分係数の定義）
-description: 割線→接線（微分係数の定義）を高校生向けにスマホで理解する。
+description: 割線→接線（微分係数の定義）を図と式で結び、意味と使いどころを整理して見た瞬間に手順を再現できるようにする。
 section: differentiation
 order: 10
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 6
 examTag: 定期テスト対策
 misconceptionPattern: 割線→接線（微分係数の定義） を公式暗記だけで処理してしまう
 cta: 次の基礎記事へ進む
+hookQuestion: 割線→接線（微分係数の定義）で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 定義を図と式で往復し、割線→接線（微分係数の定義）を自分の言葉で説明できる状態を目指す。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 割線→接線（微分係数の定義）の要点を30秒で口頭説明できるか。
+  - 割線→接線（微分係数の定義）の同型問題で同じ手順を再現できるか。
 tags:
   - 微分
   - 定期テスト

@@ -16,7 +16,7 @@ export function initSubstitutionMapViz({ root, readValues }) {
     const data = d3.range(xMin, xMax + 0.01, 0.03).map((vx) => ({ x: vx, y: u(vx, p) }));
     const yMax = Math.max(...data.map((d) => d.y), 1.2) * 1.2;
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [xMin, xMax],
       yDomain: [0, yMax]
     });
@@ -27,7 +27,7 @@ export function initSubstitutionMapViz({ root, readValues }) {
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#0b74de")
+      .attr("stroke", palette.primary)
       .attr("stroke-width", 2.2)
       .attr("d", line);
 
@@ -39,7 +39,7 @@ export function initSubstitutionMapViz({ root, readValues }) {
       .attr("cx", xScale(x))
       .attr("cy", yScale(uv))
       .attr("r", 4.3)
-      .attr("fill", "#e27a00");
+      .attr("fill", palette.secondary);
 
     summary.textContent = `x=${x.toFixed(2)} を u=${uv.toFixed(3)} に写像。du/dx=${dudx.toFixed(3)} を使って置換積分を組み立てます。`;
   };

@@ -21,7 +21,7 @@ import { renderHeader } from "../src/components/header.mjs";
 import { renderFooter } from "../src/components/footer.mjs";
 import { renderBreadcrumb } from "../src/components/breadcrumb.mjs";
 import { renderAdSlot } from "../src/components/ad-slot.mjs";
-import { renderArticleLinks } from "../src/components/article-links.mjs";
+import { renderArticleLinks, findNextStepLink } from "../src/components/article-links.mjs";
 import { renderInteractiveContainer } from "../src/components/interactive-container.mjs";
 import { validateArticlePlan } from "./content/validate-plan.mjs";
 import { generateArticlesFromPlan } from "./content/generate-articles.mjs";
@@ -33,6 +33,7 @@ const ARTICLES_DIR = path.join(ROOT, "src", "articles");
 const SITE_DIR = path.join(ROOT, ".site");
 const PUBLIC_SITEMAP_PATH = path.join(ROOT, "public", "sitemap.xml");
 const KPI_OUTPUT_PATH = path.join(ROOT, "public", "kpi-content.json");
+const UX_QUALITY_OUTPUT_PATH = path.join(ROOT, "public", "ux-content-quality.json");
 
 const SECTION_DESCRIPTIONS = {
   basics: "グラフと極限を短時間で確認し、微積へスムーズに入るための基礎です。",
@@ -62,6 +63,69 @@ function estimateMinutes(markdownText, fallbackMinutes) {
     .filter(Boolean).length;
   const fromWords = Math.max(3, Math.round(words / 220));
   return Math.max(fromWords, Number(fallbackMinutes || 0));
+}
+
+function buildDescriptionQualityReport(articles) {
+  const capabilityPattern = /(できる|身につく|理解|説明|判断|見抜|再現|思い出|選べ|組み立て|言える)/;
+  const errors = [];
+  const endingMap = new Map();
+  const descriptionMap = new Map();
+  const lengths = [];
+  const bodyLengths = [];
+
+  for (const article of articles) {
+    const text = String(article.description ?? "").trim();
+    const normalized = text.replace(/\s+/g, " ");
+    const ending = normalized.slice(-10);
+    lengths.push(normalized.length);
+    bodyLengths.push(article.markdownBody.length);
+
+    if (normalized.length < 40 || normalized.length > 75) {
+      errors.push(`${article.slug}: description length must be 40-75 chars.`);
+    }
+    if (!capabilityPattern.test(normalized)) {
+      errors.push(`${article.slug}: description must describe what the learner can do.`);
+    }
+
+    descriptionMap.set(normalized, (descriptionMap.get(normalized) ?? 0) + 1);
+    endingMap.set(ending, (endingMap.get(ending) ?? 0) + 1);
+  }
+
+  for (const [ending, count] of endingMap.entries()) {
+    if (ending.trim().length > 0 && count > 8) {
+      errors.push(`description ending "${ending}" is repeated ${count} times.`);
+    }
+  }
+
+  const duplicateCount = [...descriptionMap.values()].reduce((acc, count) => acc + Math.max(0, count - 1), 0);
+  const duplicateRate = articles.length === 0 ? 0 : duplicateCount / articles.length;
+  if (duplicateRate > 0.1) {
+    errors.push(`description duplicate rate is too high: ${(duplicateRate * 100).toFixed(1)}%.`);
+  }
+
+  const payload = {
+    generatedAt: new Date().toISOString(),
+    articleCount: articles.length,
+    description: {
+      minLength: Math.min(...lengths),
+      maxLength: Math.max(...lengths),
+      avgLength: Number((lengths.reduce((a, b) => a + b, 0) / Math.max(lengths.length, 1)).toFixed(2)),
+      duplicateRate: Number((duplicateRate * 100).toFixed(2)),
+      repeatedEndings: [...endingMap.entries()]
+        .filter(([, count]) => count > 1)
+        .map(([ending, count]) => ({ ending, count }))
+        .sort((a, b) => b.count - a.count)
+        .slice(0, 10)
+    },
+    bodyLength: {
+      min: Math.min(...bodyLengths),
+      max: Math.max(...bodyLengths),
+      avg: Number((bodyLengths.reduce((a, b) => a + b, 0) / Math.max(bodyLengths.length, 1)).toFixed(2))
+    },
+    errors
+  };
+
+  return { payload, errors };
 }
 
 async function collectMarkdownFiles(dirPath) {
@@ -102,6 +166,15 @@ function renderArticleCard(article) {
 </article>`.trim();
 }
 
+function renderPathCard({ title, description, href, track, ctaKind, ctaLabel }) {
+  return `
+<article class="path-card" data-track="${track}">
+  <h3>${escapeHtml(title)}</h3>
+  <p>${escapeHtml(description)}</p>
+  <a class="path-link" href="${href}" data-track="${track}" data-cta-kind="${ctaKind}">${escapeHtml(ctaLabel)}</a>
+</article>`.trim();
+}
+
 function renderTagList(tags) {
   return tags.map((tag) => `<li>${escapeHtml(tag)}</li>`).join("");
 }
@@ -112,6 +185,14 @@ function renderUpdates(updates) {
     .join("");
 }
 
+function renderListItems(items) {
+  return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+}
+
+function renderQuestionItems(items) {
+  return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+}
+
 function buildMailtoHref() {
   const subject = encodeURIComponent("[スマホで微積ナビ] 誤り報告");
   const body = encodeURIComponent(
@@ -120,35 +201,28 @@ function buildMailtoHref() {
   return `mailto:owner@example.com?subject=${subject}&body=${body}`;
 }
 
-function buildMisconceptionBlock(article) {
-  return `
-<section class="content-section misconception-block">
-  <h2>誤概念チェック</h2>
-  <p>${escapeHtml(article.misconceptionPattern)}</p>
-  <p class="small-note">先に誤答パターンを知っておくと、計算ミスが減ります。</p>
-</section>`.trim();
-}
-
-function buildQuickReviewBlock(article) {
-  return `
-<section class="content-section quick-review">
-  <h2>10分復習ポイント</h2>
-  <ul class="plain-list">
-    <li>${escapeHtml(article.title)} を30秒で言葉にできる</li>
-    <li>グラフ上で「何が変化しているか」を説明できる</li>
-    <li>最後に符号・範囲・単位をチェックできる</li>
-  </ul>
-</section>`.trim();
-}
-
 function buildExamCta(article) {
   const href = article.track === "exam" ? article.route : "/exam/";
   const label = article.track === "exam" ? "この共通テスト記事を繰り返す" : "共通テスト導線へ進む";
   return `
 <section class="exam-cta" data-track="${article.track}" data-intent="${article.intent}">
-  <h2>次の演習</h2>
-  <p>誘導文で迷わないために、共通テスト導線で同テーマを1問解きましょう。</p>
+  <h2>共通テスト導線</h2>
+  <p>誘導文で迷わないために、同テーマを共通テストレーンで1問解きましょう。</p>
   <a class="button-primary" href="${href}" data-track="exam" data-intent="exam" data-cta-kind="exam-cta">${label}</a>
+</section>`.trim();
+}
+
+function buildNextStepHtml(article) {
+  const nextStep = findNextStepLink(article.relatedLinks ?? []);
+  if (!nextStep) {
+    return "";
+  }
+
+  return `
+<section class="content-section next-step" data-track="${article.track}" data-intent="${article.intent}">
+  <h2>次の1本</h2>
+  <p>理解をつなげるために、次はこの1本だけ進めます。</p>
+  <a class="next-step-link" href="${nextStep.route}" data-track="${nextStep.track}" data-intent="${nextStep.intent}" data-cta-kind="next-step">${escapeHtml(nextStep.title)}</a>
 </section>`.trim();
 }
 
@@ -216,6 +290,21 @@ async function writeKpiContent(articles) {
   await fs.writeFile(KPI_OUTPUT_PATH, `${JSON.stringify(payload, null, 2)}\n`, "utf8");
 }
 
+async function writeUxContentQuality(articles) {
+  const report = buildDescriptionQualityReport(articles);
+  await fs.writeFile(UX_QUALITY_OUTPUT_PATH, `${JSON.stringify(report.payload, null, 2)}\n`, "utf8");
+  if (report.errors.length > 0) {
+    throw new Error(`UX content quality checks failed:\n- ${report.errors.join("\n- ")}`);
+  }
+}
+
+function pickArticle(slugToArticle, fallbackArticles, preferredSlug) {
+  if (preferredSlug && slugToArticle.has(preferredSlug)) {
+    return slugToArticle.get(preferredSlug);
+  }
+  return fallbackArticles[0] ?? null;
+}
+
 async function build() {
   const planRows = await validateArticlePlan();
   await generateArticlesFromPlan();
@@ -246,6 +335,8 @@ async function build() {
   if (articles.length !== planRows.length) {
     throw new Error(`Plan rows (${planRows.length}) and generated articles (${articles.length}) are inconsistent.`);
   }
+
+  await writeUxContentQuality(articles);
 
   const slugToArticle = new Map(articles.map((article) => [article.slug, article]));
 
@@ -278,37 +369,37 @@ async function build() {
 
   const routesForSitemap = new Set(["/", "/exam/", "/changelog/", "/report/"]);
 
-  const roadmapSlugs = [
-    "limits-intro",
-    "secant-to-tangent",
-    "riemann-sum-area",
-    "ftc-basic",
-    "common-calculus-mistakes"
-  ];
+  const regularArticles = articles.filter((article) => article.track !== "exam").sort(compareByOrderThenTitle);
+  const examArticles = articles.filter((article) => article.track === "exam").sort(compareByOrderThenTitle);
 
-  const roadmapCards = roadmapSlugs
-    .map((slug) => slugToArticle.get(slug))
-    .filter(Boolean)
-    .map((article) => renderArticleCard(article))
-    .join("");
+  const quickPickCards = [
+    renderPathCard({
+      title: "定期テストを先に固める",
+      description: "定義と計算手順を先に固め、授業進度に合わせて10分で復習する。",
+      href: "/calculus/differentiation/",
+      track: "regular",
+      ctaKind: "home-quick-regular",
+      ctaLabel: "定期テストレーンへ"
+    }),
+    renderPathCard({
+      title: "共通テスト型で演習する",
+      description: "誘導文の読み取りを優先し、共テ頻出テーマを順に確認する。",
+      href: "/exam/",
+      track: "exam",
+      ctaKind: "home-quick-exam",
+      ctaLabel: "共通テストレーンへ"
+    })
+  ].join("");
 
-  const firstThreeCards = ["limits-intro", "secant-to-tangent", "riemann-sum-area"]
-    .map((slug) => slugToArticle.get(slug))
-    .filter(Boolean)
-    .map((article) => renderArticleCard(article))
-    .join("");
+  const firstPick = pickArticle(slugToArticle, regularArticles, "secant-to-tangent");
+  const todayRegular = pickArticle(
+    slugToArticle,
+    regularArticles.filter((article) => article.slug !== firstPick?.slug),
+    "riemann-sum-area"
+  );
+  const todayExam = pickArticle(slugToArticle, examArticles, "local-max-min-judge");
 
-  const regularTrackCards = articles
-    .filter((article) => article.track !== "exam")
-    .slice(0, 8)
-    .map((article) => renderArticleCard(article))
-    .join("");
-
-  const examTrackCards = articles
-    .filter((article) => article.track === "exam")
-    .slice(0, 8)
-    .map((article) => renderArticleCard(article))
-    .join("");
+  const todayCards = [todayRegular, todayExam].filter(Boolean).map((article) => renderArticleCard(article)).join("");
 
   const recentUpdates = articles
     .flatMap((article) =>
@@ -319,7 +410,7 @@ async function build() {
       }))
     )
     .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .slice(0, 10)
+    .slice(0, 5)
     .map(
       (item) =>
         `<li><a href="${item.articleRoute}">${escapeHtml(item.articleTitle)}</a> - ${escapeHtml(item.date)} ${escapeHtml(item.note)}</li>`
@@ -333,17 +424,16 @@ async function build() {
     currentRoute: "/",
     pageTemplate: "home",
     pageValues: {
-      roadmap_cards: roadmapCards,
-      first_three_cards: firstThreeCards,
-      regular_track_cards: regularTrackCards,
-      exam_track_cards: examTrackCards,
+      quick_pick_cards: quickPickCards,
+      first_pick_card: firstPick ? renderArticleCard(firstPick) : "",
+      today_cards: todayCards,
       recent_updates: recentUpdates,
       breadcrumb_html: ""
     },
     pageScript: '<script type="module" src="/assets/js/page-home.js"></script>',
     seo: buildSeoTags({
       title: SITE_NAME,
-      description: "高校生向けのスマホ中心・微積インタラクティブ学習サイト。定期テストと共通テストの二層導線。",
+      description: "高校生向けのスマホ中心・微積インタラクティブ学習サイト。最初の20秒で次に読むべき1本が分かる導線設計。",
       route: "/",
       siteUrl: SITE_URL,
       type: "website",
@@ -362,11 +452,7 @@ async function build() {
     currentRoute: "/exam/",
     pageTemplate: "exam",
     pageValues: {
-      exam_cards: articles
-        .filter((article) => article.track === "exam")
-        .sort(compareByOrderThenTitle)
-        .map((article) => renderArticleCard(article))
-        .join(""),
+      exam_cards: examArticles.map((article) => renderArticleCard(article)).join(""),
       breadcrumb_html: renderBreadcrumb(examCrumbs)
     },
     pageScript: '<script type="module" src="/assets/js/page-section.js"></script>',
@@ -440,20 +526,22 @@ async function build() {
       pageValues: {
         article_track: article.track,
         article_intent: article.intent,
-        track_badge: `${escapeHtml(article.trackLabel)} / ${escapeHtml(article.examTag)} / ${escapeHtml(article.level)}`,
+        track_badge: `${escapeHtml(article.trackLabel)} / ${escapeHtml(article.level)}`,
         article_title: escapeHtml(article.title),
         article_description: escapeHtml(article.description),
         article_tags: renderTagList(article.tags),
-        conclusion_text: escapeHtml(article.conclusion || article.description),
+        hook_question: escapeHtml(article.hookQuestion),
+        one_line_answer: escapeHtml(article.oneLineAnswer),
         interactive_html: renderInteractiveContainer(article.interactive),
         ad_top: renderAdSlot({ slotId: `${article.slug}-top`, position: "top" }),
-        misconception_block: buildMisconceptionBlock(article),
+        key_takeaways: renderListItems(article.keyTakeaways),
+        misconception_text: escapeHtml(article.misconceptionPattern),
+        checkpoint_questions: renderQuestionItems(article.checkpointQuestions),
+        next_step_html: buildNextStepHtml(article),
         article_body: article.bodyHtml,
         example_text: escapeHtml(
           article.example || "本文を読んだ後、式を見ずに自分でグラフと式の対応を説明してみましょう。"
         ),
-        quick_review_block: buildQuickReviewBlock(article),
-        common_mistake_text: escapeHtml(article.commonMistake || article.misconceptionPattern),
         exam_cta: buildExamCta(article),
         related_links_html: renderArticleLinks({
           links: article.relatedLinks,

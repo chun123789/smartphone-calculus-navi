@@ -32,8 +32,8 @@
 
 .theme-toggle,
 .nav-toggle {
-  min-height: var(--tap-min);
-  min-width: var(--tap-min);
+  min-height: var(--tap-main);
+  min-width: var(--tap-main);
   border: 1px solid var(--line);
   background: var(--surface-soft);
   color: var(--ink);
@@ -64,7 +64,7 @@
 .nav-link {
   display: inline-flex;
   align-items: center;
-  min-height: var(--tap-min);
+  min-height: var(--tap-main);
   padding: 0 0.8rem;
   border-radius: 10px;
   color: var(--ink-soft);

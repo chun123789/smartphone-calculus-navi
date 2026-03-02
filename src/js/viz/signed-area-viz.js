@@ -19,7 +19,7 @@ export function initSignedAreaViz({ root, readValues }) {
     const yExtent = d3.extent(sample, (d) => d.y);
     const yPad = Math.max(1, (yExtent[1] - yExtent[0]) * 0.35);
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [a, b],
       yDomain: [yExtent[0] - yPad, yExtent[1] + yPad]
     });
@@ -33,7 +33,7 @@ export function initSignedAreaViz({ root, readValues }) {
       .append("path")
       .datum(sample)
       .attr("fill", "none")
-      .attr("stroke", "#0f172a")
+      .attr("stroke", palette.curve)
       .attr("stroke-width", 2.1)
       .attr("d", line);
 
@@ -46,7 +46,7 @@ export function initSignedAreaViz({ root, readValues }) {
       .append("path")
       .datum(sample)
       .attr("d", area)
-      .attr("fill", useAbs ? "rgba(11,116,222,0.26)" : "rgba(226,122,0,0.26)");
+      .attr("fill", useAbs ? palette.fillPrimary : palette.dangerSoft);
 
     const signed = 0;
     const absolute = Math.abs(k);

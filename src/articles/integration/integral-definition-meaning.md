@@ -1,7 +1,7 @@
 ---
 slug: integral-definition-meaning
 title: 積分とは何か（面積と累積）
-description: 積分とは何か（面積と累積）を高校生向けにスマホで理解する。
+description: 積分とは何か（面積と累積）を図と式で結び、意味と使いどころを整理して解法の意図を自分の言葉で言えるようにする。
 section: integration
 order: 26
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 6
 examTag: 定期テスト対策
 misconceptionPattern: 積分とは何か（面積と累積） を公式暗記だけで処理してしまう
 cta: 次の基礎記事へ進む
+hookQuestion: 積分とは何か（面積と累積）で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 定義を図と式で往復し、積分とは何か（面積と累積）を自分の言葉で説明できる状態を目指す。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 積分とは何か（面積と累積）の要点を30秒で口頭説明できるか。
+  - 積分とは何か（面積と累積）の同型問題で同じ手順を再現できるか。
 tags:
   - 積分
   - 定期テスト

@@ -1,7 +1,7 @@
 ---
 slug: derivative-sign-chart
 title: 増減表の作り方（導関数の符号）
-description: 増減表の作り方（導関数の符号）を高校生向けにスマホで理解する。
+description: 増減表の作り方（導関数の符号）で迷う分岐を整理し、問題を見たら手順を再現できるようにする。
 section: differentiation
 order: 14
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 8
 examTag: 定期テスト対策
 misconceptionPattern: 増減表の作り方（導関数の符号） を公式暗記だけで処理してしまう
 cta: 次の基礎記事へ進む
+hookQuestion: 増減表の作り方（導関数の符号）で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 増減表の作り方（導関数の符号）の手順を固定し、条件を見たら次の一手を再現できる状態を作る。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 増減表の作り方（導関数の符号）の要点を30秒で口頭説明できるか。
+  - 増減表の作り方（導関数の符号）の同型問題で同じ手順を再現できるか。
 tags:
   - 微分
   - 定期テスト

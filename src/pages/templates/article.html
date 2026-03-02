@@ -6,15 +6,36 @@
     <ul class="tag-list">{{article_tags}}</ul>
   </header>
 
+  <section class="content-section question-block">
+    <h2>問い</h2>
+    <p>{{hook_question}}</p>
+  </section>
+
   <section class="conclusion-block">
-    <h2>結論</h2>
-    <p>{{conclusion_text}}</p>
+    <h2>結論1行</h2>
+    <p>{{one_line_answer}}</p>
   </section>
 
   {{interactive_html}}
   {{ad_top}}
 
-  {{misconception_block}}
+  <section class="content-section quick-review">
+    <h2>60秒要点</h2>
+    <ul class="plain-list">{{key_takeaways}}</ul>
+  </section>
+
+  <section class="content-section misconception-block">
+    <h2>ミス反例</h2>
+    <p>{{misconception_text}}</p>
+    <p class="small-note">反例で崩れるケースを先に見ると、手順の意味を覚えやすくなります。</p>
+  </section>
+
+  <section class="content-section checkpoints">
+    <h2>確認2問</h2>
+    <ol>{{checkpoint_questions}}</ol>
+  </section>
+
+  {{next_step_html}}
 
   <section class="content-section">
     <h2>解説</h2>
@@ -26,15 +47,7 @@
     <p>{{example_text}}</p>
   </section>
 
-  {{quick_review_block}}
-
-  <section class="content-section">
-    <h2>よくあるミス</h2>
-    <p>{{common_mistake_text}}</p>
-  </section>
-
   {{exam_cta}}
-
   {{related_links_html}}
   {{ad_bottom}}
 

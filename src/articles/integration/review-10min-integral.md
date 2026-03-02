@@ -1,7 +1,7 @@
 ---
 slug: review-10min-integral
 title: 10分で復習する積分の5パターン
-description: 10分で復習する積分の5パターンを高校生向けにスマホで理解する。
+description: 10分で復習する積分の5パターンの頻出ポイントを10分で再接続し、解法の流れを短時間で思い出せるようにする。
 section: integration
 order: 48
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 6
 examTag: 定期テスト対策
 misconceptionPattern: 10分で復習する積分の5パターン を公式暗記だけで処理してしまう
 cta: 次の基礎記事へ進む
+hookQuestion: 10分で復習する積分の5パターンで、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 要点を10分で再接続し、10分で復習する積分の5パターンを短時間で思い出せるようにする。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 10分で復習する積分の5パターンの要点を30秒で口頭説明できるか。
+  - 10分で復習する積分の5パターンの同型問題で同じ手順を再現できるか。
 tags:
   - 積分
   - 定期テスト

@@ -130,7 +130,9 @@ export function validateArticleFrontmatter(rawData, filePath) {
     "examTag",
     "misconceptionPattern",
     "cta",
-    "published"
+    "published",
+    "hookQuestion",
+    "oneLineAnswer"
   ];
   for (const field of requiredStrings.slice(0, 4)) {
     if (!isNonEmptyString(rawData[field])) {
@@ -166,6 +168,16 @@ export function validateArticleFrontmatter(rawData, filePath) {
   }
   if (!Number.isInteger(rawData.estimatedMinutes) || rawData.estimatedMinutes < 1) {
     errors.push("estimatedMinutes must be a positive integer.");
+  }
+  if (!Array.isArray(rawData.keyTakeaways) || rawData.keyTakeaways.length !== 3) {
+    errors.push("keyTakeaways must be an array of exactly 3 items.");
+  } else if (!rawData.keyTakeaways.every(isNonEmptyString)) {
+    errors.push("keyTakeaways entries must be non-empty strings.");
+  }
+  if (!Array.isArray(rawData.checkpointQuestions) || rawData.checkpointQuestions.length !== 2) {
+    errors.push("checkpointQuestions must be an array of exactly 2 items.");
+  } else if (!rawData.checkpointQuestions.every(isNonEmptyString)) {
+    errors.push("checkpointQuestions entries must be non-empty strings.");
   }
 
   const interactive = rawData.interactive ?? null;
@@ -212,6 +224,10 @@ export function validateArticleFrontmatter(rawData, filePath) {
     examTag: rawData.examTag.trim(),
     misconceptionPattern: rawData.misconceptionPattern.trim(),
     cta: rawData.cta.trim(),
+    hookQuestion: rawData.hookQuestion.trim(),
+    oneLineAnswer: rawData.oneLineAnswer.trim(),
+    keyTakeaways: rawData.keyTakeaways.map((item) => item.trim()),
+    checkpointQuestions: rawData.checkpointQuestions.map((item) => item.trim()),
     tags: rawData.tags.map((tag) => tag.trim()),
     interactive: normalizedInteractive,
     links,

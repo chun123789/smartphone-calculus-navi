@@ -20,7 +20,7 @@ export function initAreaFunctionFtcViz({ root, readValues }) {
     const dataA = d3.range(xMin, xMax + 0.01, 0.03).map((vx) => ({ x: vx, y: A(vx, k) }));
     const yMax = Math.max(...dataA.map((d) => d.y), 1) * 1.15;
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [xMin, xMax],
       yDomain: [0, yMax]
     });
@@ -34,7 +34,7 @@ export function initAreaFunctionFtcViz({ root, readValues }) {
       .append("path")
       .datum(dataA)
       .attr("fill", "none")
-      .attr("stroke", "#0b74de")
+      .attr("stroke", palette.primary)
       .attr("stroke-width", 2.1)
       .attr("d", line);
 
@@ -47,7 +47,7 @@ export function initAreaFunctionFtcViz({ root, readValues }) {
       .attr("cx", xScale(x))
       .attr("cy", yScale(A(x, k)))
       .attr("r", 4.3)
-      .attr("fill", "#e27a00");
+      .attr("fill", palette.secondary);
 
     summary.textContent = `A'(x)の差分近似=${approxSlope.toFixed(4)}、f(x)=${fx.toFixed(4)}。2つが一致していくのが基本定理です。`;
   };

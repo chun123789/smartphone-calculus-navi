@@ -1,7 +1,7 @@
 ---
 slug: definite-integral-properties
 title: 定積分の性質（線形性と区間分割）
-description: 定積分の性質（線形性と区間分割）を高校生向けにスマホで理解する。
+description: 定積分の性質（線形性と区間分割）で迷う分岐を整理し、問題を見たら手順を再現できるようにする。
 section: integration
 order: 36
 track: regular
@@ -12,6 +12,15 @@ estimatedMinutes: 8
 examTag: 定期テスト対策
 misconceptionPattern: 定積分の性質（線形性と区間分割） を公式暗記だけで処理してしまう
 cta: 次の基礎記事へ進む
+hookQuestion: 定積分の性質（線形性と区間分割）で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 定積分の性質（線形性と区間分割）の手順を固定し、条件を見たら次の一手を再現できる状態を作る。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 式変形の前にグラフで符号と範囲を確認する
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 定積分の性質（線形性と区間分割）の要点を30秒で口頭説明できるか。
+  - 定積分の性質（線形性と区間分割）の同型問題で同じ手順を再現できるか。
 tags:
   - 積分
   - 定期テスト

@@ -1,7 +1,7 @@
 ---
 slug: integral-function-derivative
 title: 定積分で表された関数の微分
-description: 定積分で表された関数の微分を高校生向けにスマホで理解する。
+description: 定積分で表された関数の微分を共通テスト形式で読み解き、条件から必要式を判断できるようにする。
 section: fundamental
 order: 54
 track: exam
@@ -12,6 +12,15 @@ estimatedMinutes: 10
 examTag: 共通テスト対策
 misconceptionPattern: 誘導文の条件を式に変換する前に計算を始めてしまう
 cta: 共通テスト演習へ進む
+hookQuestion: 定積分で表された関数の微分で、最初にどこを見れば迷わず進めるか？
+oneLineAnswer: 誘導文の条件から必要量を選び、定積分で表された関数の微分を共テ形式で判断できるようにする。
+keyTakeaways:
+  - 条件を言葉にし、変化する量と固定する量を分ける
+  - 誘導文のゴールを先に確認し、必要式だけを選ぶ
+  - 最後に符号・区間・単位を30秒で点検する
+checkpointQuestions:
+  - 定積分で表された関数の微分の要点を30秒で口頭説明できるか。
+  - 定積分で表された関数の微分の同型問題で同じ手順を再現できるか。
 tags:
   - 微積の基本定理
   - 共通テスト

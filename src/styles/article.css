@@ -17,6 +17,10 @@
   color: var(--ink-soft);
 }
 
+.question-block {
+  border-left: 4px solid var(--brand);
+}
+
 .article-content table {
   width: 100%;
   border-collapse: collapse;
@@ -32,12 +36,87 @@
   margin-top: 0.65rem;
 }
 
+.interactive-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.55rem;
+}
+
+.viz-control-button {
+  min-height: var(--tap-main);
+  min-width: 112px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+  color: var(--ink);
+  font-weight: 700;
+  padding: 0 0.9rem;
+}
+
+.viz-control-button[aria-pressed="true"] {
+  border-color: color-mix(in srgb, var(--brand) 55%, var(--line));
+  background: color-mix(in srgb, var(--brand) 20%, var(--surface-soft));
+}
+
+.viz-legend {
+  margin: 0 0 0.6rem;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 0.8rem;
+}
+
+.viz-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--line) 65%, transparent);
+}
+
+.legend-swatch.tone-curve {
+  background: var(--viz-curve);
+}
+
+.legend-swatch.tone-primary {
+  background: var(--viz-primary);
+}
+
+.legend-swatch.tone-secondary {
+  background: var(--viz-secondary);
+}
+
+.legend-swatch.tone-danger {
+  background: var(--viz-danger);
+}
+
+.legend-swatch.tone-accent {
+  background: var(--viz-accent);
+}
+
+.legend-swatch.tone-fill-primary {
+  background: var(--viz-fill-primary);
+}
+
+.legend-swatch.tone-danger-soft {
+  background: var(--viz-danger-soft);
+}
+
 .viz-canvas {
   width: 100%;
   min-height: 270px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: var(--surface);
+  background: color-mix(in srgb, var(--surface-soft) 55%, var(--surface));
 }
 
 .slider-controls {
@@ -53,7 +132,7 @@
 
 .slider-input {
   width: 100%;
-  min-height: var(--tap-min);
+  min-height: var(--tap-main);
 }
 
 .slider-value {
@@ -73,6 +152,11 @@
 
 .quick-review {
   border-left: 4px solid var(--brand);
+}
+
+.checkpoints ol {
+  margin: 0;
+  padding-left: 1.2rem;
 }
 
 .exam-cta {

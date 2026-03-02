@@ -26,6 +26,114 @@ const initMethod = {
   "substitution-map": "initSubstitutionMapViz"
 };
 
+function emitInput(input) {
+  input.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
+function setupInteractiveControls(root) {
+  const sliders = [...root.querySelectorAll(".slider-input")];
+  const playButton = root.querySelector("#interactive-play-toggle");
+  const resetButton = root.querySelector("#interactive-reset");
+
+  if (sliders.length === 0) {
+    if (playButton) {
+      playButton.disabled = true;
+    }
+    if (resetButton) {
+      resetButton.disabled = true;
+    }
+    return () => {};
+  }
+
+  const defaults = new Map(
+    sliders.map((slider) => [slider.id, slider.getAttribute("data-default-value") ?? slider.value])
+  );
+
+  let timer = null;
+  let direction = 1;
+
+  const updatePlayButton = (playing) => {
+    if (!playButton) {
+      return;
+    }
+    playButton.setAttribute("aria-pressed", String(playing));
+    playButton.textContent = playing ? "停止" : "再生";
+  };
+
+  const stop = () => {
+    if (timer) {
+      window.clearInterval(timer);
+      timer = null;
+    }
+    updatePlayButton(false);
+  };
+
+  const stepPrimarySlider = () => {
+    const slider = sliders[0];
+    if (!slider) {
+      stop();
+      return;
+    }
+
+    const min = Number(slider.min);
+    const max = Number(slider.max);
+    const step = Number(slider.step) || 1;
+    const current = Number(slider.value);
+    let next = current + direction * step;
+
+    if (next >= max) {
+      next = max;
+      direction = -1;
+    } else if (next <= min) {
+      next = min;
+      direction = 1;
+    }
+
+    slider.value = String(Number(next.toFixed(6)));
+    emitInput(slider);
+  };
+
+  const play = () => {
+    if (timer) {
+      return;
+    }
+    updatePlayButton(true);
+    timer = window.setInterval(stepPrimarySlider, 750);
+  };
+
+  if (playButton) {
+    playButton.addEventListener("click", () => {
+      if (timer) {
+        stop();
+      } else {
+        play();
+      }
+    });
+  }
+
+  if (resetButton) {
+    resetButton.addEventListener("click", () => {
+      stop();
+      sliders.forEach((slider) => {
+        slider.value = defaults.get(slider.id) ?? slider.value;
+        emitInput(slider);
+      });
+    });
+  }
+
+  const onVisibilityChange = () => {
+    if (document.hidden) {
+      stop();
+    }
+  };
+  document.addEventListener("visibilitychange", onVisibilityChange);
+
+  return () => {
+    stop();
+    document.removeEventListener("visibilitychange", onVisibilityChange);
+  };
+}
+
 async function initInteractive() {
   const root = document.getElementById("interactive-root");
   if (!root) {
@@ -49,6 +157,8 @@ async function initInteractive() {
     throw new Error(`Visualization initializer missing: ${moduleName}.${methodName}`);
   }
   init({ root, readValues });
+  const cleanup = setupInteractiveControls(root);
+  window.addEventListener("beforeunload", cleanup, { once: true });
 
   if (window.MathJax?.typesetPromise) {
     window.MathJax.typesetPromise();

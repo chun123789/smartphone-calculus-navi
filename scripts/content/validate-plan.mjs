@@ -15,7 +15,14 @@ const REQUIRED_COLUMNS = [
   "prereq2",
   "next",
   "mistake",
-  "published"
+  "published",
+  "hookQuestion",
+  "oneLineAnswer",
+  "takeaway1",
+  "takeaway2",
+  "takeaway3",
+  "check1",
+  "check2"
 ];
 
 const VALID_SECTIONS = new Set(["basics", "differentiation", "integration", "fundamental", "mistakes"]);
@@ -27,6 +34,10 @@ function assert(condition, message) {
   if (!condition) {
     throw new Error(message);
   }
+}
+
+function hasSufficientLength(value, min = 12) {
+  return typeof value === "string" && value.trim().length >= min;
 }
 
 export async function validateArticlePlan(csvPath) {
@@ -51,6 +62,14 @@ export async function validateArticlePlan(csvPath) {
     assert(VALID_TRACKS.has(row.track), `Invalid track for ${row.slug}: ${row.track}`);
     assert(VALID_LEVELS.has(row.level), `Invalid level for ${row.slug}: ${row.level}`);
     assert(VALID_PRIORITY.has(row.priority), `Invalid priority for ${row.slug}: ${row.priority}`);
+
+    assert(hasSufficientLength(row.hookQuestion), `hookQuestion must be at least 12 chars: ${row.slug}`);
+    assert(hasSufficientLength(row.oneLineAnswer), `oneLineAnswer must be at least 12 chars: ${row.slug}`);
+    assert(hasSufficientLength(row.takeaway1), `takeaway1 must be at least 12 chars: ${row.slug}`);
+    assert(hasSufficientLength(row.takeaway2), `takeaway2 must be at least 12 chars: ${row.slug}`);
+    assert(hasSufficientLength(row.takeaway3), `takeaway3 must be at least 12 chars: ${row.slug}`);
+    assert(hasSufficientLength(row.check1), `check1 must be at least 12 chars: ${row.slug}`);
+    assert(hasSufficientLength(row.check2), `check2 must be at least 12 chars: ${row.slug}`);
   }
 
   for (const row of rows) {

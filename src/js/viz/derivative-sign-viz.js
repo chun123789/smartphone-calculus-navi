@@ -22,7 +22,7 @@ export function initDerivativeSignViz({ root, readValues }) {
     const yExtent = d3.extent(data, (d) => d.y);
     const yPad = Math.max(1, (yExtent[1] - yExtent[0]) * 0.18);
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [xMin, xMax],
       yDomain: [yExtent[0] - yPad, yExtent[1] + yPad]
     });
@@ -36,7 +36,7 @@ export function initDerivativeSignViz({ root, readValues }) {
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#0f172a")
+      .attr("stroke", palette.curve)
       .attr("stroke-width", 2.2)
       .attr("d", curve);
 
@@ -48,7 +48,7 @@ export function initDerivativeSignViz({ root, readValues }) {
         .attr("x2", xScale(cx))
         .attr("y1", yScale(yExtent[0] - yPad))
         .attr("y2", yScale(yExtent[1] + yPad))
-        .attr("stroke", "#e27a00")
+        .attr("stroke", palette.secondary)
         .attr("stroke-dasharray", "4,4");
     });
 
@@ -58,7 +58,7 @@ export function initDerivativeSignViz({ root, readValues }) {
       .attr("cx", xScale(x))
       .attr("cy", yScale(y))
       .attr("r", 4.3)
-      .attr("fill", "#0b74de");
+      .attr("fill", palette.primary);
 
     const slope = df(x, safeP);
     const signText = slope > 0 ? "増加" : slope < 0 ? "減少" : "停留";

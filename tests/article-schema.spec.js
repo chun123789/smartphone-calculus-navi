@@ -15,6 +15,17 @@ describe("article frontmatter schema", () => {
     examTag: "定期テスト対策",
     misconceptionPattern: "公式だけ覚えて意味が曖昧",
     cta: "次へ進む",
+    hookQuestion: "最初にどこを見ればよいか？",
+    oneLineAnswer: "式と図を往復して説明できる状態を作る。",
+    keyTakeaways: [
+      "条件を言葉にする",
+      "グラフで符号を確認する",
+      "最後に範囲を点検する"
+    ],
+    checkpointQuestions: [
+      "30秒で要点を説明できるか",
+      "同型問題で再現できるか"
+    ],
     tags: ["微分", "基礎"],
     interactive: {
       module: "secant-tangent",
@@ -46,5 +57,10 @@ describe("article frontmatter schema", () => {
     const broken = { ...valid };
     delete broken.track;
     expect(() => validateArticleFrontmatter(broken, "test.md")).toThrow(/track/);
+  });
+
+  test("rejects invalid takeaway/question lengths", () => {
+    const broken = { ...valid, keyTakeaways: ["1", "2"], checkpointQuestions: ["1"] };
+    expect(() => validateArticleFrontmatter(broken, "test.md")).toThrow(/keyTakeaways|checkpointQuestions/);
   });
 });

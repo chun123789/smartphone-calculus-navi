@@ -20,7 +20,7 @@ export function initIntegralFunctionDerivativeViz({ root, readValues }) {
     const data = d3.range(xMin, xMax + 0.01, 0.03).map((vx) => ({ x: vx, y: F(vx, k) }));
     const yExtent = d3.extent(data, (d) => d.y);
 
-    const { plot, xScale, yScale } = createChart(canvas, {
+    const { plot, xScale, yScale, palette } = createChart(canvas, {
       xDomain: [xMin, xMax],
       yDomain: [Math.min(0, yExtent[0]) - 0.5, yExtent[1] + 0.8]
     });
@@ -30,7 +30,7 @@ export function initIntegralFunctionDerivativeViz({ root, readValues }) {
       .append("path")
       .datum(data)
       .attr("fill", "none")
-      .attr("stroke", "#0f172a")
+      .attr("stroke", palette.curve)
       .attr("stroke-width", 2.1)
       .attr("d", line);
 
@@ -43,7 +43,7 @@ export function initIntegralFunctionDerivativeViz({ root, readValues }) {
       .attr("cx", xScale(x))
       .attr("cy", yScale(F(x, k)))
       .attr("r", 4.3)
-      .attr("fill", "#0b74de");
+      .attr("fill", palette.primary);
 
     summary.textContent = `d/dx ∫[1,x]f(t)dt ≈ ${derivativeApprox.toFixed(4)}、f(x)=${fx.toFixed(4)}。差分近似で一致を確認。`;
   };
