@@ -1,5 +1,6 @@
-<article class="article-page">
+<article class="article-page" data-track="{{article_track}}" data-intent="{{article_intent}}">
   <header class="article-header">
+    <p class="track-badge">{{track_badge}}</p>
     <h1>{{article_title}}</h1>
     <p class="article-description">{{article_description}}</p>
     <ul class="tag-list">{{article_tags}}</ul>
@@ -13,6 +14,8 @@
   {{interactive_html}}
   {{ad_top}}
 
+  {{misconception_block}}
+
   <section class="content-section">
     <h2>解説</h2>
     <div class="article-content">{{article_body}}</div>
@@ -23,10 +26,14 @@
     <p>{{example_text}}</p>
   </section>
 
+  {{quick_review_block}}
+
   <section class="content-section">
     <h2>よくあるミス</h2>
     <p>{{common_mistake_text}}</p>
   </section>
+
+  {{exam_cta}}
 
   {{related_links_html}}
   {{ad_bottom}}

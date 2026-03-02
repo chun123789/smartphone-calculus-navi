@@ -2,6 +2,7 @@ const NAV_ITEMS = [
   { href: "/", label: "トップ" },
   { href: "/calculus/differentiation/", label: "微分" },
   { href: "/calculus/integration/", label: "積分" },
+  { href: "/exam/", label: "共テ" },
   { href: "/changelog/", label: "更新ログ" },
   { href: "/report/", label: "誤り報告" }
 ];
@@ -24,11 +25,13 @@ export function renderHeader(currentRoute = "/") {
 <header class="site-header" role="banner">
   <div class="header-inner">
     <a class="site-logo" href="/">スマホで微積ナビ</a>
-    <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">メニュー</button>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="テーマを切替" aria-live="polite">テーマ</button>
+      <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">メニュー</button>
+    </div>
   </div>
   <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
     <ul>${navItems}</ul>
   </nav>
 </header>`.trim();
 }
-

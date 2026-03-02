@@ -14,7 +14,7 @@
 }
 
 .article-description {
-  color: var(--muted);
+  color: var(--ink-soft);
 }
 
 .article-content table {
@@ -29,15 +29,15 @@
 }
 
 .interactive-root {
-  margin-top: 0.6rem;
+  margin-top: 0.65rem;
 }
 
 .viz-canvas {
   width: 100%;
-  min-height: 260px;
+  min-height: 270px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .slider-controls {
@@ -64,5 +64,21 @@
 .interactive-summary {
   margin: 0.7rem 0 0;
   font-weight: 600;
-  color: #1e3a8a;
+  color: var(--ok);
+}
+
+.misconception-block {
+  border-left: 4px solid var(--accent);
+}
+
+.quick-review {
+  border-left: 4px solid var(--brand);
+}
+
+.exam-cta {
+  margin-top: 1rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-soft);
 }

@@ -1,9 +1,10 @@
-<section class="hero-card">
+<section class="hero-card hero-layered">
+  <p class="eyebrow">高校生向け / スマホ最適</p>
   <h1>スマホで微積ナビ</h1>
-  <p>高校生向けに、微分・積分・微積の基本定理をスマホで短時間学習できるように設計したサイトです。</p>
+  <p>定期テストで基礎を固めながら、共通テスト導線へ段階的に進める微積サイトです。</p>
   <div class="hero-cta-row">
-    <a class="button-primary" href="/calculus/differentiation/">微分から始める</a>
-    <a class="button-secondary" href="/calculus/integration/">積分を見る</a>
+    <a class="button-primary" href="/calculus/differentiation/" data-track="regular" data-cta-kind="home-start">定期テストの導線へ</a>
+    <a class="button-secondary" href="/exam/" data-track="exam" data-cta-kind="home-exam">共通テスト導線へ</a>
   </div>
 </section>
 
@@ -13,8 +14,18 @@
 </section>
 
 <section class="content-section">
-  <h2>最初に読む3本</h2>
+  <h2>定期テスト 最初に読む3本</h2>
   <div class="card-grid">{{first_three_cards}}</div>
+</section>
+
+<section class="content-section">
+  <h2>定期テストの最短ルート</h2>
+  <div class="card-grid">{{regular_track_cards}}</div>
+</section>
+
+<section class="content-section">
+  <h2>共通テストの演習ルート</h2>
+  <div class="card-grid">{{exam_track_cards}}</div>
 </section>
 
 <section class="content-section">

@@ -30,6 +30,27 @@ export function buildBreadcrumbJsonLd(crumbs, siteUrl) {
   return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
+export function buildArticleJsonLd({
+  title,
+  description,
+  route,
+  siteUrl,
+  publishedDate,
+  modifiedDate
+}) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    description,
+    datePublished: publishedDate,
+    dateModified: modifiedDate ?? publishedDate,
+    mainEntityOfPage: absoluteUrl(route, siteUrl),
+    inLanguage: "ja-JP"
+  };
+  return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
+}
+
 export function buildSeoTags({
   title,
   description,
@@ -37,12 +58,24 @@ export function buildSeoTags({
   siteUrl,
   imagePath = "/icons/icon-512.png",
   type = "article",
-  crumbs = []
+  crumbs = [],
+  article = null
 }) {
   const fullTitle = `${title} | ${SITE_NAME}`;
   const canonical = absoluteUrl(route, siteUrl);
   const ogImage = `${siteUrl}${imagePath}`;
   const breadcrumbScript = crumbs.length > 0 ? buildBreadcrumbJsonLd(crumbs, siteUrl) : "";
+  const articleScript =
+    article && type === "article"
+      ? buildArticleJsonLd({
+          title,
+          description,
+          route,
+          siteUrl,
+          publishedDate: article.publishedDate,
+          modifiedDate: article.modifiedDate
+        })
+      : "";
   return `
 <title>${escapeText(fullTitle)}</title>
 <meta name="description" content="${escapeAttribute(description)}">
@@ -56,6 +89,6 @@ export function buildSeoTags({
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${escapeAttribute(fullTitle)}">
 <meta name="twitter:description" content="${escapeAttribute(description)}">
-${breadcrumbScript}`.trim();
+${breadcrumbScript}
+${articleScript}`.trim();
 }
-

@@ -1,29 +1,36 @@
 ---
 slug: function-graph-reading
 title: グラフ読解の基礎（増減と傾き）
-description: 微分・積分の図を読むために必要なグラフの見方を整理する。
+description: グラフ読解の基礎（増減と傾き）を高校生向けにスマホで理解する。
 section: basics
-order: 8
+order: 5
+track: regular
+intent: concept
+level: 基礎
+priority: S
+estimatedMinutes: 6
+examTag: 定期テスト対策
+misconceptionPattern: グラフ読解の基礎（増減と傾き） を公式暗記だけで処理してしまう
+cta: 次の基礎記事へ進む
 tags:
-  - グラフ
-  - 基礎
-  - 傾き
+  - 微積の準備
+  - 定期テスト
+  - concept
+interactive: null
 links:
   prerequisitesCandidates:
     - limits-intro
-    - riemann-sum-area
-    - secant-to-tangent
+    - integral-definition-meaning
   nextStep: secant-to-tangent
   mistakes: common-calculus-mistakes
 updates:
-  - date: 2026-02-28
-    note: 初版公開
-published: 2026-02-28
-conclusion: 式だけでなくグラフの傾きと面積の意味を読むと、微積の計算ミスが減る。
-example: y=x^2 と y=2x^2 の違いを「傾きが急になる」で説明してみよう。
-commonMistake: 座標軸のスケールを見ずに比較してしまう。
+  - date: '2026-03-02'
+    note: 構成を最新方針に更新
+published: '2026-03-02'
+conclusion: グラフ読解の基礎（増減と傾き）は「誤答→反例→正ルール」で理解すると定着が速い。
+example: 本文のルールを使って、1問だけ自力で再現してみよう。
+commonMistake: グラフ読解の基礎（増減と傾き） を公式暗記だけで処理してしまう
 ---
-
 微積の説明では、式とグラフが同時に出てきます。  
 まずは次の3点を固定して読みましょう。
 

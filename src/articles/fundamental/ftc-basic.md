@@ -1,29 +1,36 @@
 ---
 slug: ftc-basic
 title: 微積の基本定理の入口
-description: 微分と積分が逆操作でつながることを最短で理解する。
+description: 微積の基本定理の入口を高校生向けにスマホで理解する。
 section: fundamental
-order: 42
+order: 50
+track: regular
+intent: definition
+level: 標準
+priority: S
+estimatedMinutes: 8
+examTag: 定期テスト対策
+misconceptionPattern: 微積の基本定理の入口 を公式暗記だけで処理してしまう
+cta: 次の基礎記事へ進む
 tags:
   - 微積の基本定理
-  - 微分
-  - 積分
+  - 定期テスト
+  - definition
+interactive: null
 links:
   prerequisitesCandidates:
+    - review-10min-integral
     - derivative-rules-overview
-    - definite-integral-properties
-    - secant-to-tangent
-  nextStep: common-calculus-mistakes
-  mistakes: function-graph-reading
+  nextStep: ftc-area-function
+  mistakes: common-calculus-mistakes
 updates:
-  - date: 2026-02-28
-    note: 初版公開
-published: 2026-02-28
-conclusion: 積分で作った関数を微分すると元の関数に戻る、という往復が基本定理の核心。
-example: F(x)=∫[0,x]t^2dt を定義し、F'(x)=x^2 を確認しよう。
-commonMistake: 不定積分の定数Cと定積分の値を混同する。
+  - date: '2026-03-02'
+    note: 構成を最新方針に更新
+published: '2026-03-02'
+conclusion: 微積の基本定理の入口は「誤答→反例→正ルール」で理解すると定着が速い。
+example: 本文のルールを使って、1問だけ自力で再現してみよう。
+commonMistake: 微積の基本定理の入口 を公式暗記だけで処理してしまう
 ---
-
 微積の基本定理は次の2つを結びます。
 
 - 微分: 一点の変化率

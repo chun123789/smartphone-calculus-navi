@@ -1,13 +1,21 @@
 ---
 slug: secant-to-tangent
 title: 割線→接線（微分係数の定義）
-description: 割線の傾きが接線の傾きへ近づく様子から微分係数を理解する。
+description: 割線→接線（微分係数の定義）を高校生向けにスマホで理解する。
 section: differentiation
-order: 12
+order: 10
+track: regular
+intent: definition
+level: 基礎
+priority: S
+estimatedMinutes: 6
+examTag: 定期テスト対策
+misconceptionPattern: 割線→接線（微分係数の定義） を公式暗記だけで処理してしまう
+cta: 次の基礎記事へ進む
 tags:
   - 微分
-  - 微分係数
-  - 極限
+  - 定期テスト
+  - definition
 interactive:
   module: secant-tangent
   controls:
@@ -33,18 +41,16 @@ links:
   prerequisitesCandidates:
     - limits-intro
     - function-graph-reading
-    - derivative-rules-overview
-  nextStep: derivative-rules-overview
+  nextStep: tangent-line-equation
   mistakes: common-calculus-mistakes
 updates:
-  - date: 2026-02-28
-    note: 初版公開（D3スライダー対応）
-published: 2026-02-28
-conclusion: 微分係数は「dxを0に近づけた割線の傾き」で、f(x)=kx^2なら2kaになる。
-example: k=2, a=1, dx=0.2 のとき割線の傾きを計算し、2ka=4との違いを見よう。
-commonMistake: dxを0に置いて分母0にしてしまう。0にするのではなく0に近づける。
+  - date: '2026-03-02'
+    note: 構成を最新方針に更新
+published: '2026-03-02'
+conclusion: 割線→接線（微分係数の定義）は「誤答→反例→正ルール」で理解すると定着が速い。
+example: 本文のルールを使って、1問だけ自力で再現してみよう。
+commonMistake: 割線→接線（微分係数の定義） を公式暗記だけで処理してしまう
 ---
-
 微分係数は次で定義されます。
 
 \[
@@ -63,4 +69,3 @@ f'(a)=\lim_{dx\to 0}\frac{f(a+dx)-f(a)}{dx}
 \]
 
 スライダーで \(dx\) を下げると、赤い割線の傾きが青い接線の傾きに近づきます。
-

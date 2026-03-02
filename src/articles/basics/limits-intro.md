@@ -1,29 +1,36 @@
 ---
 slug: limits-intro
 title: 極限の入口（近づくとは何か）
-description: 微分と積分の前提になる「近づく」の感覚をグラフでつかむ。
+description: 極限の入口（近づくとは何か）を高校生向けにスマホで理解する。
 section: basics
-order: 5
+order: 8
+track: regular
+intent: definition
+level: 基礎
+priority: S
+estimatedMinutes: 6
+examTag: 定期テスト対策
+misconceptionPattern: 極限の入口（近づくとは何か） を公式暗記だけで処理してしまう
+cta: 次の基礎記事へ進む
 tags:
-  - 極限
-  - 基礎
-  - 微積準備
+  - 微積の準備
+  - 定期テスト
+  - definition
+interactive: null
 links:
   prerequisitesCandidates:
     - function-graph-reading
-    - riemann-sum-area
-    - secant-to-tangent
+    - integral-definition-meaning
   nextStep: secant-to-tangent
   mistakes: common-calculus-mistakes
 updates:
-  - date: 2026-02-28
-    note: 初版公開
-published: 2026-02-28
-conclusion: xをある値に近づけるときの関数のふるまいを見れば、微分係数と定積分の意味がつながる。
-example: f(x)=x^2 で x→2 のときの値を表とグラフの両方で説明しよう。
-commonMistake: x=2を代入できない式まで同じ扱いにしてしまう。極限は「近づき方」の観察。
+  - date: '2026-03-02'
+    note: 構成を最新方針に更新
+published: '2026-03-02'
+conclusion: 極限の入口（近づくとは何か）は「誤答→反例→正ルール」で理解すると定着が速い。
+example: 本文のルールを使って、1問だけ自力で再現してみよう。
+commonMistake: 極限の入口（近づくとは何か） を公式暗記だけで処理してしまう
 ---
-
 微積は「一気に答えを出す計算」ではなく、**変化の途中をどう見るか**の学習です。  
 その最初の道具が極限です。
 

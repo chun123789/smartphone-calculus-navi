@@ -1,29 +1,36 @@
 ---
 slug: definite-integral-properties
 title: 定積分の性質（線形性と区間分割）
-description: 面積としての意味を保ったまま式変形できる、定積分の基本性質を整理する。
+description: 定積分の性質（線形性と区間分割）を高校生向けにスマホで理解する。
 section: integration
-order: 34
+order: 36
+track: regular
+intent: procedure
+level: 標準
+priority: A
+estimatedMinutes: 8
+examTag: 定期テスト対策
+misconceptionPattern: 定積分の性質（線形性と区間分割） を公式暗記だけで処理してしまう
+cta: 次の基礎記事へ進む
 tags:
   - 積分
-  - 定積分
-  - 性質
+  - 定期テスト
+  - procedure
+interactive: null
 links:
   prerequisitesCandidates:
+    - indefinite-integral-constant
     - riemann-sum-area
-    - limits-intro
-    - function-graph-reading
-  nextStep: ftc-basic
+  nextStep: signed-area-vs-absolute
   mistakes: common-calculus-mistakes
 updates:
-  - date: 2026-02-28
-    note: 初版公開
-published: 2026-02-28
-conclusion: 定積分の性質は、面積の分け方と足し方に対応している。
-example: ∫[0,2](x^2+1)dx を線形性で2つに分けて求めよう。
-commonMistake: 積分範囲を変えたのに符号を反転し忘れる。
+  - date: '2026-03-02'
+    note: 構成を最新方針に更新
+published: '2026-03-02'
+conclusion: 定積分の性質（線形性と区間分割）は「誤答→反例→正ルール」で理解すると定着が速い。
+example: 本文のルールを使って、1問だけ自力で再現してみよう。
+commonMistake: 定積分の性質（線形性と区間分割） を公式暗記だけで処理してしまう
 ---
-
 定積分で最低限押さえる性質は次の3つです。
 
 1. 線形性  
@@ -40,4 +47,3 @@ commonMistake: 積分範囲を変えたのに符号を反転し忘れる。
    \]
 
 これらは公式暗記ではなく、面積の足し引きで理解すると忘れにくくなります。
-

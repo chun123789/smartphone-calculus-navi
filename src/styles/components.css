@@ -1,13 +1,13 @@
 .card-grid {
   display: grid;
-  gap: 0.8rem;
+  gap: 0.85rem;
 }
 
 .learn-card {
   border: 1px solid var(--line);
   border-radius: 12px;
-  padding: 0.9rem;
-  background: #fff;
+  padding: 0.95rem;
+  background: var(--surface);
 }
 
 .learn-card h3 {
@@ -16,9 +16,9 @@
 }
 
 .card-meta {
-  margin-top: 0.5rem;
-  color: var(--muted);
-  font-size: 0.92rem;
+  margin-top: 0.45rem;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
 }
 
 .card-link {
@@ -30,11 +30,23 @@
   font-weight: 700;
 }
 
+.track-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  color: var(--ink-soft);
+  background: var(--surface-soft);
+}
+
 .hero-cta-row {
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-top: 0.8rem;
+  margin-top: 0.85rem;
 }
 
 .tag-list {
@@ -42,17 +54,17 @@
   flex-wrap: wrap;
   gap: 0.4rem;
   list-style: none;
-  margin: 0.6rem 0 0;
+  margin: 0.62rem 0 0;
   padding: 0;
 }
 
 .tag-list li {
-  border: 1px solid #93c5fd;
+  border: 1px solid var(--line);
   border-radius: 999px;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.82rem;
-  color: #1e3a8a;
-  background: #eff6ff;
+  padding: 0.2rem 0.58rem;
+  font-size: 0.81rem;
+  color: var(--ink-soft);
+  background: var(--surface-soft);
 }
 
 .ad-slot {
@@ -61,13 +73,13 @@
 
 .ad-slot-box {
   min-height: 90px;
-  border: 1px dashed #7c3aed;
-  background: #f5f3ff;
+  border: 1px dashed color-mix(in srgb, var(--accent) 70%, var(--line));
+  background: color-mix(in srgb, var(--surface-soft) 85%, transparent);
   border-radius: 12px;
   display: grid;
   place-items: center;
   font-weight: 700;
-  color: #5b21b6;
+  color: var(--ink-soft);
 }
 
 .related-links {
@@ -75,7 +87,7 @@
   padding: 1rem;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: #fff;
+  background: var(--surface);
 }
 
 .related-group {
@@ -90,6 +102,19 @@
 .related-group ul {
   margin: 0;
   padding-left: 1rem;
+}
+
+.track-badge {
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  padding: 0.2rem 0.6rem;
+  background: var(--surface-soft);
+  color: var(--ink-soft);
+  font-weight: 700;
+  font-size: 0.84rem;
 }
 
 @media (min-width: 640px) {

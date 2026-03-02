@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-03-02T06:18:44.977Z",
+  "totals": {
+    "articles": 30,
+    "interactive": 10,
+    "examTrack": 14,
+    "regularTrack": 16,
+    "avgMinutes": 8.07
+  },
+  "byTrack": {
+    "regular": 16,
+    "exam": 14
+  },
+  "bySection": {
+    "basics": 2,
+    "differentiation": 8,
+    "integration": 12,
+    "fundamental": 7,
+    "mistakes": 1
+  },
+  "byPriority": {
+    "S": 16,
+    "A": 9,
+    "B": 5
+  },
+  "notes": [
+    "週次で Search Console の CTR と掲載順位を記録する",
+    "Cloudflare Web Analytics で PV と回遊率の変化を確認する"
+  ]
+}

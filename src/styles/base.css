@@ -1,16 +1,38 @@
 :root {
-  --bg: #f8fafc;
-  --surface: #ffffff;
-  --ink: #0f172a;
-  --muted: #475569;
-  --line: #cbd5e1;
-  --brand: #0ea5e9;
-  --brand-strong: #0369a1;
-  --accent: #f59e0b;
-  --focus: #ef4444;
   --radius: 14px;
   --tap-min: 44px;
   --content-max: 760px;
+  --font-main: "BIZ UDPGothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
+}
+
+:root[data-theme="light"] {
+  --bg: #f3f7fb;
+  --surface: #ffffff;
+  --surface-soft: #eef4ff;
+  --ink: #0b1020;
+  --ink-soft: #3f4b63;
+  --line: #cad5ea;
+  --brand: #0b74de;
+  --brand-strong: #0758a7;
+  --accent: #e27a00;
+  --focus: #e11d48;
+  --ok: #0e9f6e;
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --bg: #070b14;
+  --surface: #111a2c;
+  --surface-soft: #132038;
+  --ink: #edf2ff;
+  --ink-soft: #b8c4dd;
+  --line: #2b3a58;
+  --brand: #5eb6ff;
+  --brand-strong: #8ecbff;
+  --accent: #ffbf47;
+  --focus: #fb7185;
+  --ok: #2ed79f;
+  color-scheme: dark;
 }
 
 * {
@@ -24,9 +46,13 @@ html {
 body {
   margin: 0;
   color: var(--ink);
-  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
-  font-family: "BIZ UDPGothic", "Hiragino Sans", "Noto Sans JP", sans-serif;
-  line-height: 1.75;
+  background:
+    radial-gradient(circle at 10% -10%, rgba(94, 182, 255, 0.22), transparent 35%),
+    radial-gradient(circle at 90% 0%, rgba(255, 191, 71, 0.16), transparent 28%),
+    var(--bg);
+  font-family: var(--font-main);
+  line-height: 1.72;
+  min-height: 100dvh;
 }
 
 img,
@@ -46,9 +72,9 @@ input:focus-visible {
 }
 
 .main-content {
-  width: min(100% - 1.2rem, var(--content-max));
+  width: min(100% - 1.1rem, var(--content-max));
   margin: 0 auto;
-  padding: 0.8rem 0 4rem;
+  padding: 0.8rem 0 4.2rem;
 }
 
 .skip-link {
@@ -56,8 +82,8 @@ input:focus-visible {
   left: 0.6rem;
   top: -100px;
   background: var(--ink);
-  color: #fff;
-  padding: 0.5rem 0.8rem;
+  color: var(--surface);
+  padding: 0.55rem 0.9rem;
   border-radius: 8px;
   z-index: 200;
 }
@@ -73,7 +99,21 @@ input:focus-visible {
   border-radius: var(--radius);
   padding: 1rem;
   margin-top: 1rem;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+  box-shadow: 0 9px 26px rgba(5, 10, 18, 0.15);
+}
+
+.hero-layered {
+  background:
+    linear-gradient(150deg, rgba(11, 116, 222, 0.2), rgba(11, 116, 222, 0) 40%),
+    var(--surface);
+}
+
+.eyebrow {
+  margin: 0 0 0.3rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--accent);
 }
 
 .button-primary,
@@ -82,10 +122,11 @@ input:focus-visible {
   align-items: center;
   justify-content: center;
   min-height: var(--tap-min);
-  padding: 0.6rem 1rem;
+  padding: 0.64rem 1.05rem;
   border-radius: 10px;
   text-decoration: none;
   font-weight: 700;
+  border: 1px solid transparent;
 }
 
 .button-primary {
@@ -94,24 +135,25 @@ input:focus-visible {
 }
 
 .button-secondary {
-  color: var(--brand-strong);
-  background: #e0f2fe;
+  color: var(--ink);
+  background: var(--surface-soft);
+  border-color: var(--line);
 }
 
 .plain-list {
   margin: 0;
-  padding-left: 1.1rem;
+  padding-left: 1.12rem;
 }
 
 .small-note {
-  color: var(--muted);
+  color: var(--ink-soft);
   font-size: 0.95rem;
 }
 
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(5px);
   }
   to {
     opacity: 1;
@@ -122,5 +164,9 @@ input:focus-visible {
 @media (min-width: 768px) {
   html {
     font-size: 17px;
+  }
+
+  .main-content {
+    width: min(100% - 1.8rem, var(--content-max));
   }
 }

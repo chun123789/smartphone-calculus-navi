@@ -21,7 +21,7 @@ export function renderInteractiveContainer(interactive) {
     return `
 <section class="interactive-block" aria-labelledby="interactive-title">
   <h2 id="interactive-title">結論＋インタラクティブ</h2>
-  <p>このページは読み物中心です。操作が必要な可視化はありません。</p>
+  <p>このページは読み物中心です。必要な可視化はありません。</p>
 </section>`.trim();
   }
 
@@ -29,7 +29,7 @@ export function renderInteractiveContainer(interactive) {
   return `
 <section class="interactive-block" aria-labelledby="interactive-title">
   <h2 id="interactive-title">結論＋インタラクティブ</h2>
-  <p id="interactive-help">スライダーを動かすと、グラフと式の対応がすぐに確認できます。</p>
+  <p id="interactive-help">スライダーを動かすと、式とグラフの対応を同時に確認できます。</p>
   <div
     id="interactive-root"
     class="interactive-root"
@@ -45,4 +45,3 @@ export function renderInteractiveContainer(interactive) {
   </div>
 </section>`.trim();
 }
-

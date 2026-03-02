@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "npm run build:content && vite",
     "build:content": "node scripts/build-content.mjs",
+    "validate:plan": "node scripts/content/validate-plan.mjs",
+    "sync:articles": "node scripts/content/generate-articles.mjs",
     "build": "npm run build:content && vite build",
     "preview": "npm run build && vite preview",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest",

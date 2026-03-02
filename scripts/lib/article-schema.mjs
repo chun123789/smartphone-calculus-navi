@@ -5,6 +5,9 @@ const VALID_SECTIONS = new Set([
   "fundamental",
   "mistakes"
 ]);
+const VALID_TRACKS = new Set(["regular", "exam", "bridge"]);
+const VALID_LEVELS = new Set(["基礎", "標準", "発展"]);
+const VALID_PRIORITIES = new Set(["S", "A", "B"]);
 
 function isNonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
@@ -116,8 +119,25 @@ function validateLinks(links, errors) {
 
 export function validateArticleFrontmatter(rawData, filePath) {
   const errors = [];
-  const requiredStrings = ["slug", "title", "description", "section", "published"];
+  const requiredStrings = [
+    "slug",
+    "title",
+    "description",
+    "section",
+    "track",
+    "intent",
+    "level",
+    "examTag",
+    "misconceptionPattern",
+    "cta",
+    "published"
+  ];
   for (const field of requiredStrings.slice(0, 4)) {
+    if (!isNonEmptyString(rawData[field])) {
+      errors.push(`${field} must be a non-empty string.`);
+    }
+  }
+  for (const field of requiredStrings.slice(4, requiredStrings.length - 1)) {
     if (!isNonEmptyString(rawData[field])) {
       errors.push(`${field} must be a non-empty string.`);
     }
@@ -134,6 +154,18 @@ export function validateArticleFrontmatter(rawData, filePath) {
   }
   if (!Array.isArray(rawData.tags) || rawData.tags.length === 0 || !rawData.tags.every(isNonEmptyString)) {
     errors.push("tags must be a non-empty string array.");
+  }
+  if (!VALID_TRACKS.has(rawData.track)) {
+    errors.push(`track must be one of: ${Array.from(VALID_TRACKS).join(", ")}.`);
+  }
+  if (!VALID_LEVELS.has(rawData.level)) {
+    errors.push(`level must be one of: ${Array.from(VALID_LEVELS).join(", ")}.`);
+  }
+  if (!VALID_PRIORITIES.has(rawData.priority)) {
+    errors.push(`priority must be one of: ${Array.from(VALID_PRIORITIES).join(", ")}.`);
+  }
+  if (!Number.isInteger(rawData.estimatedMinutes) || rawData.estimatedMinutes < 1) {
+    errors.push("estimatedMinutes must be a positive integer.");
   }
 
   const interactive = rawData.interactive ?? null;
@@ -172,6 +204,14 @@ export function validateArticleFrontmatter(rawData, filePath) {
     description: rawData.description.trim(),
     section: rawData.section,
     order: rawData.order,
+    track: rawData.track,
+    intent: rawData.intent.trim(),
+    level: rawData.level,
+    priority: rawData.priority,
+    estimatedMinutes: rawData.estimatedMinutes,
+    examTag: rawData.examTag.trim(),
+    misconceptionPattern: rawData.misconceptionPattern.trim(),
+    cta: rawData.cta.trim(),
     tags: rawData.tags.map((tag) => tag.trim()),
     interactive: normalizedInteractive,
     links,

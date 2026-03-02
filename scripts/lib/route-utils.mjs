@@ -11,6 +11,12 @@ export const SECTION_LABELS = {
   mistakes: "ミス集"
 };
 
+export const TRACK_LABELS = {
+  regular: "定期テスト",
+  exam: "共通テスト",
+  bridge: "橋渡し"
+};
+
 export function normalizeRoute(route) {
   if (!route || route === "/") {
     return "/";
@@ -45,4 +51,3 @@ export function compareByOrderThenTitle(a, b) {
   }
   return a.title.localeCompare(b.title, "ja");
 }
-
