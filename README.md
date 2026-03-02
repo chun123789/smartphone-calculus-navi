@@ -43,6 +43,10 @@ npm run dev
 
 ## ディレクトリ要点
 
+- `reports/`
+  - `competitive-design-audit-2026-03-02.md`: 競合・原則の調査レポート
+  - `ux-redesign-plan-v4.md`: 調査に基づく実装計画
+  - `ux-redesign-v3-2026-03-02.md`: 実装結果レポート
 - `content-plan/articles.csv`
   - 台帳。記事順・導線・優先度・可視化モジュール・問い/要点/確認を一元管理
 - `scripts/content/`
@@ -100,6 +104,13 @@ UI上では `<details>` で段階表示します。
 - ヘッダの「テーマ」ボタンで切替
 - 選択状態は `localStorage(theme-preference)` に保存
 - 可視化色は CSS 変数（`--viz-*`）でテーマ連動
+
+## UX方針（競合調査反映）
+
+- 20秒以内に「次の1本」を選べる導線
+- トップは4ブロック固定で意思決定を簡略化
+- 記事は「問い→結論→可視化→確認」の順序を固定
+- 可視化は操作ボタン/凡例を共通化して迷いを減らす
 
 ## SEO実装
 

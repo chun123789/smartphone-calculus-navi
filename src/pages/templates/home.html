@@ -1,7 +1,12 @@
 <section class="hero-card hero-layered hero-home">
   <p class="eyebrow">高校生向け / スマホ最適</p>
   <h1>スマホで微積ナビ</h1>
-  <p>最初の20秒で「次に何を読むか」が決まるように、定期テストと共通テストを2レーンで案内します。</p>
+  <p>競合サイトの導線設計を踏まえ、最初の20秒で「次にやる1ステップ」が決まる学習UIへ再設計しました。</p>
+  <dl class="hero-stats" aria-label="学習統計">
+    <div><dt>公開記事</dt><dd>{{total_articles}}</dd></div>
+    <div><dt>可視化</dt><dd>{{interactive_articles}}</dd></div>
+    <div><dt>学習時間目安</dt><dd>{{avg_minutes}}分</dd></div>
+  </dl>
 </section>
 
 <section class="content-section">
@@ -11,6 +16,7 @@
 
 <section class="content-section">
   <h2>最初の1本</h2>
+  <p class="small-note">定義がわかると以降の計算記事が速く読み切れます。</p>
   <div class="focus-card">{{first_pick_card}}</div>
 </section>
 
@@ -22,4 +28,9 @@
 <section class="content-section">
   <h2>最近の更新</h2>
   <ul class="plain-list">{{recent_updates}}</ul>
+</section>
+
+<section class="content-section">
+  <h2>単元から選ぶ</h2>
+  <div class="unit-pills">{{unit_nav}}</div>
 </section>

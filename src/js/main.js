@@ -6,9 +6,25 @@ function initMobileNav() {
   if (!button || !nav) {
     return;
   }
+
+  const close = () => {
+    nav.classList.remove("is-open");
+    button.setAttribute("aria-expanded", "false");
+  };
+
   button.addEventListener("click", () => {
     const isOpen = nav.classList.toggle("is-open");
     button.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", close);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      close();
+    }
   });
 }
 
@@ -25,9 +41,9 @@ function setTheme(theme) {
   localStorage.setItem("theme-preference", theme);
   const button = document.getElementById("theme-toggle");
   if (button) {
-    const label = theme === "dark" ? "テーマ: ダーク" : "テーマ: ライト";
-    button.textContent = label;
-    button.setAttribute("aria-label", `${label}（タップで切替）`);
+    const label = theme === "dark" ? "ダーク" : "ライト";
+    button.textContent = `配色: ${label}`;
+    button.setAttribute("aria-label", `配色: ${label}（タップで切替）`);
   }
 }
 

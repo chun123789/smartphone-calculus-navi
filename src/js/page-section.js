@@ -1,14 +1,10 @@
-function addSectionHints() {
-  const cards = document.querySelectorAll(".learn-card");
-  cards.forEach((card) => {
-    card.addEventListener("focusin", () => {
-      card.style.boxShadow = "0 0 0 2px rgba(14,165,233,0.3)";
-    });
-    card.addEventListener("focusout", () => {
-      card.style.boxShadow = "none";
-    });
+function enhanceStepCards() {
+  const cards = document.querySelectorAll(".step-card");
+  cards.forEach((card, index) => {
+    card.style.animation = `fade-in 240ms ease ${Math.min(index * 36, 320)}ms both`;
+    card.addEventListener("focusin", () => card.classList.add("is-focused"));
+    card.addEventListener("focusout", () => card.classList.remove("is-focused"));
   });
 }
 
-addSectionHints();
-
+enhanceStepCards();

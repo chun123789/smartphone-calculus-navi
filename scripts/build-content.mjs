@@ -166,6 +166,18 @@ function renderArticleCard(article) {
 </article>`.trim();
 }
 
+function renderSectionStep(article, stepIndex) {
+  return `
+<li class="step-card" data-track="${article.track}" data-intent="${article.intent}">
+  <p class="step-number">STEP ${stepIndex}</p>
+  ${renderTrackChip(article)}
+  <h3>${escapeHtml(article.title)}</h3>
+  <p>${escapeHtml(article.description)}</p>
+  <p class="card-meta">目安: ${article.minutes}分 / 難易度: ${difficultyLabel(article.level)}</p>
+  <a class="card-link" href="${article.route}" data-track="${article.track}" data-intent="${article.intent}" data-cta-kind="section-step">このSTEPへ進む</a>
+</li>`.trim();
+}
+
 function renderPathCard({ title, description, href, track, ctaKind, ctaLabel }) {
   return `
 <article class="path-card" data-track="${track}">
@@ -173,6 +185,10 @@ function renderPathCard({ title, description, href, track, ctaKind, ctaLabel }) 
   <p>${escapeHtml(description)}</p>
   <a class="path-link" href="${href}" data-track="${track}" data-cta-kind="${ctaKind}">${escapeHtml(ctaLabel)}</a>
 </article>`.trim();
+}
+
+function renderUnitPill({ title, description, href, track }) {
+  return `<a class="unit-pill" href="${href}" data-track="${track}" data-cta-kind="home-unit-nav"><strong>${escapeHtml(title)}</strong><span>${escapeHtml(description)}</span></a>`;
 }
 
 function renderTagList(tags) {
@@ -401,6 +417,33 @@ async function build() {
 
   const todayCards = [todayRegular, todayExam].filter(Boolean).map((article) => renderArticleCard(article)).join("");
 
+  const unitNav = [
+    renderUnitPill({
+      title: "微分",
+      description: "接線・増減・極値を順に確認",
+      href: "/calculus/differentiation/",
+      track: "regular"
+    }),
+    renderUnitPill({
+      title: "積分",
+      description: "面積と定積分の意味を固める",
+      href: "/calculus/integration/",
+      track: "regular"
+    }),
+    renderUnitPill({
+      title: "基本定理",
+      description: "A'(x)=f(x) を可視化で理解",
+      href: "/calculus/fundamental/",
+      track: "exam"
+    }),
+    renderUnitPill({
+      title: "共通テスト",
+      description: "誘導文読解の演習レーン",
+      href: "/exam/",
+      track: "exam"
+    })
+  ].join("");
+
   const recentUpdates = articles
     .flatMap((article) =>
       article.updates.map((item) => ({
@@ -424,10 +467,14 @@ async function build() {
     currentRoute: "/",
     pageTemplate: "home",
     pageValues: {
+      total_articles: String(articles.length),
+      interactive_articles: String(articles.filter((article) => article.interactive).length),
+      avg_minutes: String(Number((articles.reduce((sum, article) => sum + article.minutes, 0) / Math.max(articles.length, 1)).toFixed(1))),
       quick_pick_cards: quickPickCards,
       first_pick_card: firstPick ? renderArticleCard(firstPick) : "",
       today_cards: todayCards,
       recent_updates: recentUpdates,
+      unit_nav: unitNav,
       breadcrumb_html: ""
     },
     pageScript: '<script type="module" src="/assets/js/page-home.js"></script>',
@@ -478,7 +525,7 @@ async function build() {
     const sectionArticles = [...sectionArticlesRaw].sort(compareByOrderThenTitle);
     const route = sectionRoute(section);
     routesForSitemap.add(route);
-    const cards = sectionArticles.map((article) => renderArticleCard(article)).join("");
+    const steps = sectionArticles.map((article, index) => renderSectionStep(article, index + 1)).join("");
     const examCount = sectionArticles.filter((article) => article.track === "exam").length;
     const crumbs = [
       { name: "ホーム", route: "/" },
@@ -494,7 +541,7 @@ async function build() {
         section_title: escapeHtml(SECTION_LABELS[section] ?? section),
         section_description: escapeHtml(SECTION_DESCRIPTIONS[section] ?? ""),
         section_meta: `${sectionArticles.length}記事 / 共通テスト導線 ${examCount}記事`,
-        section_cards: cards,
+        section_steps: steps,
         breadcrumb_html: renderBreadcrumb(crumbs)
       },
       pageScript: '<script type="module" src="/assets/js/page-section.js"></script>',

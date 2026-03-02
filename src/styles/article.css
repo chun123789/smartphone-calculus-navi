@@ -8,28 +8,45 @@
 .article-page .content-section {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: 1rem;
-  margin-top: 1rem;
+  margin-top: 0.92rem;
+}
+
+.article-header {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--brand) 14%, transparent), transparent 48%),
+    var(--surface);
 }
 
 .article-description {
   color: var(--ink-soft);
+  margin-top: 0.48rem;
 }
 
 .question-block {
   border-left: 4px solid var(--brand);
 }
 
+.article-content p {
+  margin: 0.52rem 0 0;
+}
+
+.article-content h2,
+.article-content h3 {
+  margin-top: 1rem;
+}
+
 .article-content table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 0.8rem;
 }
 
 .article-content th,
 .article-content td {
   border: 1px solid var(--line);
-  padding: 0.4rem;
+  padding: 0.45rem;
 }
 
 .interactive-root {
@@ -45,8 +62,8 @@
 
 .viz-control-button {
   min-height: var(--tap-main);
-  min-width: 112px;
-  border-radius: 10px;
+  min-width: 120px;
+  border-radius: 12px;
   border: 1px solid var(--line);
   background: var(--surface-soft);
   color: var(--ink);
@@ -56,16 +73,16 @@
 
 .viz-control-button[aria-pressed="true"] {
   border-color: color-mix(in srgb, var(--brand) 55%, var(--line));
-  background: color-mix(in srgb, var(--brand) 20%, var(--surface-soft));
+  background: color-mix(in srgb, var(--brand) 22%, var(--surface-soft));
 }
 
 .viz-legend {
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.65rem;
   padding: 0;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.55rem 0.8rem;
+  gap: 0.5rem 0.78rem;
 }
 
 .viz-legend li {
@@ -73,7 +90,7 @@
   align-items: center;
   gap: 0.38rem;
   color: var(--ink-soft);
-  font-size: 0.9rem;
+  font-size: 0.88rem;
 }
 
 .legend-swatch {
@@ -116,11 +133,11 @@
   min-height: 270px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: color-mix(in srgb, var(--surface-soft) 55%, var(--surface));
+  background: color-mix(in srgb, var(--surface-soft) 58%, var(--surface));
 }
 
 .slider-controls {
-  margin-top: 0.8rem;
+  margin-top: 0.84rem;
   display: grid;
   gap: 0.8rem;
 }
@@ -141,7 +158,7 @@
 }
 
 .interactive-summary {
-  margin: 0.7rem 0 0;
+  margin: 0.72rem 0 0;
   font-weight: 600;
   color: var(--ok);
 }
@@ -159,10 +176,14 @@
   padding-left: 1.2rem;
 }
 
+.checkpoints li {
+  margin-top: 0.35rem;
+}
+
 .exam-cta {
   margin-top: 1rem;
   padding: 1rem;
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--surface-soft);
 }
