@@ -1,8 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
+import { fileURLToPath } from "node:url";
 
-const ROOT = "/Users/masudanaoki/ai-workspace/math-blog-test";
+const ROOT = fileURLToPath(new URL("../", import.meta.url));
 const SITE_ROOT = path.join(ROOT, ".site");
 
 function readSiteFile(...segments) {
@@ -11,7 +12,7 @@ function readSiteFile(...segments) {
 
 describe("site output UX checks", () => {
   beforeAll(() => {
-    execSync("node scripts/build-content.mjs", { cwd: ROOT, stdio: "pipe" });
+    execFileSync(process.execPath, ["scripts/build-content.mjs"], { cwd: ROOT, stdio: "pipe" });
   }, 120000);
 
   test("home uses 4 fixed blocks and avoids duplicate article cards", () => {
